@@ -1,0 +1,140 @@
+:root {
+  /* Marca Locafull */
+  --primary: #1b2a3e;
+  --secondary: #0f1824;
+  --primary-light: #2d4158;
+  --primary-light-dark: #1b2a3e1f;
+  --info: #e5f6fd;
+  --alert-success: #edf7ed;
+
+  --alert: #ffca28;
+  --alert-2: #f39233;
+  --alert-3: #ffe0b2;
+
+  --success: #25d366;
+  --success-2: #43a047;
+  --success-3: #c8e6c9;
+  --success-4: #729b48;
+  --dark-success: #1b5e20;
+
+  --danger: #b71c1c;
+  --danger-2: #e65100;
+  --danger2: #ae2020;
+
+  --black: #000000;
+  --white: #ffffff;
+  --white-light: #fbfbfb;
+
+  --black-1: #171717;
+  --black-2: #263238;
+  --black-38: #00000061;
+  --black-opacity: #0000004c;
+  --black-semi-transparent: rgba(0, 0, 0, 0.87);
+  --black-transparent: #00000099;
+  --black-very-light-transparent: #0000001f;
+  --black-transparent-dark: #0000008f;
+  --black-semi-opaque: #000000de;
+  --blackTransparent87: rgba(0, 0, 0, 0.87);
+
+  --dark-gray: #5e5e5e;
+  --dark-midnight-blue: #0f1824;
+  --dark-transparent: #0000001f;
+
+  --light-gray: #f5f5f5;
+  --light-gray1: #d7d1d1;
+  --light-gray2: #e0e0e0;
+  --light-gray3: #c0c0c0;
+
+  --gray: #aaaaaa;
+  --gray-dark: #90a4ae;
+  --gray-medium: #898686;
+  --gray-light: #aabfc9;
+  --light-blue-gray: #9ca1a7;
+
+  --gray-25: #fbfbfb;
+  --gray-50: #f7f7f7;
+  --gray-75: #dddddd;
+  --gray-100: #e0e0e0;
+  --gray-150: #cccccc;
+  --gray-200: #cfcfcf;
+  --gray-250: #bdbdbd;
+  --gray-300: #b1b1b1;
+  --gray-350: #b7b7b7;
+  --gray-400: #9e9e9e;
+  --gray-450: #898686;
+  --gray-500: #7e7e7e;
+  --gray-550: #757575;
+  --gray-600: #626262;
+  --gray-650: #5e5e5e;
+  --gray-700: #515151;
+  --gray-800: #444444;
+  --gray-850: #3b3b3b;
+  --gray-900: #222222;
+  --gray-1000: #fbfbfb;
+
+  --graphite-gray: #212121;
+  --platinum: #eeeeee;
+
+  --input-background: #fafafa;
+  --input-border: #cacaca;
+
+  --semi-transparent-black: rgba(0, 0, 0, 0.6);
+  --semi-transparent-black2: rgba(0, 0, 0, 0.12);
+  --semi-transparent-black3: rgba(0, 0, 0, 0.25);
+  --semi-transparent-black4: rgba(0, 0, 0, 0.14);
+  --semi-transparent-black5: rgba(0, 0, 0, 0.2);
+
+  --orange-primary: #f39233;
+  --orange-secondary: #ffe0b2;
+
+  --z-index-absolute: 9000;
+
+  --font-primary: var(--font-inter), "Inter", sans-serif;
+  --font-secondary: var(--font-plus-jakarta), "Plus Jakarta Sans", sans-serif;
+
+  --font-weight-extra-bold: 800;
+  --font-weight-bold: 700;
+  --font-weight-semi-bold: 600;
+  --font-weight-medium: 500;
+  --font-weight-normal: 400;
+  --font-weight-light: 300;
+
+  --font-headline1: 4.5rem;
+  --font-headline2: 4rem;
+  --font-headline3: 3rem;
+  --font-headline4: 2.25rem;
+  --font-headline5: 2rem;
+  --font-headline6: 1.5rem;
+
+  --font-body1: 1.375rem;
+  --font-body2: 1.25rem;
+  --font-body3: 1.125rem;
+  --font-body4: 1rem;
+  --font-body5: 0.875rem;
+  --font-body6: 0.75rem;
+
+  --min-width: 360px;
+  --border-radius: 12px;
+  --border-radius-1: 16px;
+  --border-radius-2: 24px;
+
+  --box-shadow-1: 0px 0px 8px 0px rgba(27, 42, 62, 0.15);
+
+  /* shadcn/ui */
+  --background: var(--light-gray);
+  --foreground: var(--dark-gray);
+  --card: var(--white);
+  --card-foreground: var(--dark-gray);
+  --popover: var(--white);
+  --popover-foreground: var(--dark-gray);
+  --muted: var(--gray-100);
+  --muted-foreground: var(--gray-600);
+  --accent: var(--alert-3);
+  --accent-foreground: var(--black-1);
+  --destructive: var(--danger);
+  --destructive-foreground: var(--white);
+  --border: var(--light-gray2);
+  --input: var(--input-border);
+  --ring: var(--primary-light);
+  --radius: var(--border-radius);
+}

@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Locafull
 
-## Getting Started
+Landing e base do produto Locafull — locação de mini caçambas em Goiânia e região.
 
-First, run the development server:
+## Stack
+
+- Next.js (App Router) + TypeScript
+- pnpm
+- Tailwind CSS v4 + shadcn-style components
+- Vitest + Testing Library
+
+## Scripts
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+pnpm install
+pnpm dev          # http://localhost:3000
+pnpm build
+pnpm start
+pnpm lint
+pnpm format       # Prettier
+pnpm typecheck
+pnpm test
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Estrutura
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+src/
+  app/                 # Rotas Next.js
+  components/
+    ui/                # Button, Input
+    layout/            # Header, Footer, SiteShell, …
+    home/              # Hero, ContactStrip
+    icons/             # Logo, WhatsApp (SVG)
+  lib/                 # constants, utils
+  styles/
+    tokens.css         # Variáveis CSS (:root) — fonte única de cores/tipografia
+    globals.css        # Tailwind + resets
+  types/               # Apenas .d.ts globais
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Cada componente em pasta própria com `index.tsx` + `types.ts` (padrão admin-checkout-front).
 
-## Learn More
+## Tokens de design
 
-To learn more about Next.js, take a look at the following resources:
+Todas as cores e tamanhos ficam em `src/styles/tokens.css` (`--primary`, `--alert-2`, `--gray-100`, etc.).  
+Valores da marca Locafull; nomes alinhados ao `global.css` do admin.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Para alterar WhatsApp, menu ou textos: `src/lib/constants.ts`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Variáveis de ambiente
 
-## Deploy on Vercel
+Copie `.env.example` para `.env.local`:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```env
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+NEXT_PUBLIC_WHATSAPP_NUMBER=556230300077
+NEXT_PUBLIC_INSTAGRAM_URL=https://www.instagram.com/locafull_locacoes/
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Husky
+
+Pre-commit roda ESLint + Prettier nos arquivos staged (`lint-staged`).
+
+## Rotas
+
+| Rota                                               | Status      |
+| -------------------------------------------------- | ----------- |
+| `/`                                                | Landing     |
+| `/sobre`, `/servicos`, `/diferenciais`, `/contato` | Placeholder |
+| `/pedido`, `/checkout`                             | Placeholder |
+
+## Spec
+
+Ver `docs/superpowers/specs/2026-05-16-locafull-landing-design.md`.

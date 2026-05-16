@@ -1,0 +1,57 @@
+import Image from "next/image";
+import Link from "next/link";
+
+import { Button } from "@/components/ui/button";
+import { SITE_TAGLINE } from "@/lib/constants";
+
+import type { IHero } from "./types";
+
+const HERO_EQUIPMENT_SRC = "/images/hero-equipamento.png";
+
+export function Hero({ className }: IHero) {
+  return (
+    <section
+      className={`relative overflow-hidden bg-gradient-to-br from-[var(--primary)] via-[var(--primary-light)] to-[var(--alert-2)] text-[var(--white)] ${className ?? ""}`}
+    >
+      <div className="mx-auto grid max-w-7xl items-center gap-8 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-12 lg:px-8 lg:py-24">
+        <div>
+          <p className="text-[length:var(--font-body5)] font-[var(--font-weight-medium)] uppercase tracking-widest text-[var(--alert-3)]">
+            {SITE_TAGLINE}
+          </p>
+          <h1 className="mt-4 text-[length:var(--font-headline4)] font-[var(--font-weight-bold)] leading-tight text-[var(--white)] sm:text-[length:var(--font-headline3)]">
+            Locação de mini caçambas para sua obra em Goiânia e região
+          </h1>
+          <p className="mt-4 max-w-xl text-[length:var(--font-body3)] text-[var(--gray-100)]">
+            Rápido, fácil e ideal para pequenas obras, reformas e limpeza de
+            terrenos. Tambores e barris para resíduos da sua construção.
+          </p>
+          <div className="mt-8 flex flex-wrap gap-4">
+            <Button size="lg" asChild>
+              <Link href="/pedido">Peça agora</Link>
+            </Button>
+            <Button
+              size="lg"
+              variant="outline"
+              className="border-[var(--white)] text-[var(--white)] hover:bg-[var(--white)]/10"
+              asChild
+            >
+              <Link href="/contato">Fale conosco</Link>
+            </Button>
+          </div>
+        </div>
+        <div className="relative flex justify-center lg:justify-end">
+          <div className="relative aspect-[4/3] w-full max-w-lg overflow-hidden rounded-[var(--border-radius-2)] border border-[var(--white)]/20 shadow-[var(--box-shadow-1)]">
+            <Image
+              src={HERO_EQUIPMENT_SRC}
+              alt="Mini caçamba Locafull laranja em trailer, pronta para entrega"
+              fill
+              className="object-cover object-center"
+              sizes="(max-width: 1024px) 100vw, 512px"
+              priority
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
