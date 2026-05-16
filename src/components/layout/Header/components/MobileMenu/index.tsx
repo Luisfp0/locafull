@@ -1,10 +1,9 @@
 "use client";
 
 import { X } from "lucide-react";
-
-import { InstagramIcon } from "@/components/icons/InstagramIcon";
 import Link from "next/link";
 
+import { InstagramIcon } from "@/components/icons/InstagramIcon";
 import { Button } from "@/components/ui/button";
 import {
   INSTAGRAM_URL,
@@ -21,20 +20,18 @@ export function MobileMenu({ open, onClose }: IMobileMenu) {
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-[var(--semi-transparent-black)] md:hidden"
+      className="bg-overlay fixed inset-0 z-50 md:hidden"
       role="dialog"
       aria-modal="true"
       aria-label="Menu de navegação"
     >
-      <div className="ml-auto flex h-full w-[min(100%,20rem)] flex-col bg-[var(--white)] shadow-[var(--box-shadow-1)]">
-        <div className="flex items-center justify-between border-b border-[var(--light-gray2)] px-4 py-4">
-          <span className="font-[var(--font-weight-bold)] text-[var(--primary)]">
-            Menu
-          </span>
+      <div className="shadow-brand ml-auto flex h-full w-[min(100%,20rem)] flex-col bg-white">
+        <div className="border-border flex items-center justify-between border-b px-4 py-4">
+          <span className="text-primary font-bold">Menu</span>
           <button
             type="button"
             onClick={onClose}
-            className="rounded-[var(--border-radius)] p-2 text-[var(--primary)] hover:bg-[var(--gray-50)]"
+            className="text-primary rounded-lg p-2 hover:bg-gray-50"
             aria-label="Fechar menu"
           >
             <X className="size-6" />
@@ -46,18 +43,18 @@ export function MobileMenu({ open, onClose }: IMobileMenu) {
               key={link.href}
               href={link.href}
               onClick={onClose}
-              className="rounded-[var(--border-radius)] px-3 py-3 text-[length:var(--font-body4)] font-[var(--font-weight-medium)] text-[var(--primary)] hover:bg-[var(--gray-50)]"
+              className="text-primary rounded-lg px-3 py-3 text-base font-medium hover:bg-gray-50"
             >
               {link.label}
             </Link>
           ))}
         </nav>
-        <div className="flex flex-col gap-3 border-t border-[var(--light-gray2)] p-4">
+        <div className="border-border flex flex-col gap-3 border-t p-4">
           <a
             href={INSTAGRAM_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-[var(--primary)]"
+            className="text-primary inline-flex items-center gap-2"
           >
             <InstagramIcon className="size-5" />
             Instagram

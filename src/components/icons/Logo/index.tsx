@@ -22,7 +22,7 @@ export function Logo({ className, showTagline = false }: ILogo) {
         priority
       />
       {showTagline && (
-        <p className="mt-0.5 max-w-[12rem] text-[length:var(--font-body6)] font-[var(--font-weight-medium)] uppercase leading-tight tracking-wide text-[var(--dark-gray)]">
+        <p className="text-foreground mt-0.5 max-w-[12rem] text-xs leading-tight font-medium tracking-wide uppercase">
           Agilidade que movimenta sua obra
         </p>
       )}

@@ -15,7 +15,7 @@ Site único **Locafull** (locação de mini caçambas, tambores e barris — Goi
 - Menu com links reais; páginas internas mínimas exceto home
 - Botão WhatsApp flutuante e contato **(62) 3030-0077**
 - Instagram: [@locafull_locacoes](https://www.instagram.com/locafull_locacoes/)
-- Slogan: *Agilidade que movimenta sua obra*
+- Slogan: _Agilidade que movimenta sua obra_
 
 **Fora do MVP:** seção “Nossa história”, pedido/pagamento/agenda, admin, logística, analytics, domínio próprio, Framer Motion, MUI.
 
@@ -23,18 +23,18 @@ Site único **Locafull** (locação de mini caçambas, tambores e barris — Goi
 
 ## 2. Stack
 
-| Camada | Decisão |
-|--------|---------|
-| Framework | Next.js (App Router) + TypeScript |
-| Pacotes | pnpm |
-| UI | Tailwind CSS + shadcn/ui |
-| Fontes | Plus Jakarta Sans (headings) + Inter (body) via `next/font/google` |
-| Ícones | Lucide React + SVGs próprios (logo, WhatsApp, Instagram) |
-| Animações | CSS/Tailwind + `prefers-reduced-motion` |
-| Deploy | Vercel (`*.vercel.app` no MVP) |
-| Qualidade | ESLint (Next) + Prettier + Husky + lint-staged + `strict` TS |
-| Testes | Vitest + Testing Library (componentes e utils) |
-| Imagens | `next/image` para fotos; SVG inline para marca |
+| Camada    | Decisão                                                            |
+| --------- | ------------------------------------------------------------------ |
+| Framework | Next.js (App Router) + TypeScript                                  |
+| Pacotes   | pnpm                                                               |
+| UI        | Tailwind CSS + shadcn/ui                                           |
+| Fontes    | Plus Jakarta Sans (headings) + Inter (body) via `next/font/google` |
+| Ícones    | Lucide React + SVGs próprios (logo, WhatsApp, Instagram)           |
+| Animações | CSS/Tailwind + `prefers-reduced-motion`                            |
+| Deploy    | Vercel (`*.vercel.app` no MVP)                                     |
+| Qualidade | ESLint (Next) + Prettier + Husky + lint-staged + `strict` TS       |
+| Testes    | Vitest + Testing Library (componentes e utils)                     |
+| Imagens   | `next/image` para fotos; SVG inline para marca                     |
 
 ---
 
@@ -72,11 +72,11 @@ src/
 
 **Não** centralizar props de componentes em `src/types/`.
 
-| Local | Conteúdo |
-|-------|----------|
-| `src/types/` | Somente declarações **globais**: `*.d.ts`, augmentations (ex. módulos sem types), tipos de ambiente se necessário |
-| `src/components/<Nome>/types.ts` | Props e tipos **daquele** componente (ex. `IHeader`, `IHero`) |
-| `src/components/<Nome>/components/<Sub>/types.ts` | Subcomponentes, como no admin (`TemplateLayout/components/Layout/types.ts`) |
+| Local                                             | Conteúdo                                                                                                          |
+| ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
+| `src/types/`                                      | Somente declarações **globais**: `*.d.ts`, augmentations (ex. módulos sem types), tipos de ambiente se necessário |
+| `src/components/<Nome>/types.ts`                  | Props e tipos **daquele** componente (ex. `IHeader`, `IHero`)                                                     |
+| `src/components/<Nome>/components/<Sub>/types.ts` | Subcomponentes, como no admin (`TemplateLayout/components/Layout/types.ts`)                                       |
 
 **Padrão por pasta de componente** (espelho admin):
 
@@ -98,15 +98,15 @@ components/layout/Header/
 
 ## 4. Rotas e menu
 
-| Menu | Rota | MVP |
-|------|------|-----|
-| Home | `/` | Landing completa |
-| Sobre nós | `/sobre` | Placeholder “Em breve” |
-| O que fazemos | `/servicos` | Placeholder |
-| Diferenciais | `/diferenciais` | Placeholder |
-| Contato | `/contato` | Placeholder ou página leve |
-| — | `/pedido` | Placeholder |
-| — | `/checkout` | Placeholder |
+| Menu          | Rota            | MVP                        |
+| ------------- | --------------- | -------------------------- |
+| Home          | `/`             | Landing completa           |
+| Sobre nós     | `/sobre`        | Placeholder “Em breve”     |
+| O que fazemos | `/servicos`     | Placeholder                |
+| Diferenciais  | `/diferenciais` | Placeholder                |
+| Contato       | `/contato`      | Placeholder ou página leve |
+| —             | `/pedido`       | Placeholder                |
+| —             | `/checkout`     | Placeholder                |
 
 **Header:** logo, links, Instagram, pill WhatsApp com número.
 
@@ -121,31 +121,31 @@ components/layout/Header/
 - **Sem** `palette.ts`, **sem** MUI, **sem** segunda camada em TypeScript.
 - Tailwind e shadcn leem `var(--*)` via `tailwind.config` / `@theme` e variantes de componente.
 
-| Arquivo | Papel |
-|---------|--------|
-| `src/styles/tokens.css` | **Única** fonte de cores, tipografia, radius, sombras, z-index |
+| Arquivo                  | Papel                                                                        |
+| ------------------------ | ---------------------------------------------------------------------------- |
+| `src/styles/tokens.css`  | **Única** fonte de cores, tipografia, radius, sombras, z-index               |
 | `src/styles/globals.css` | `@import "./tokens.css"`, Tailwind, resets (`box-sizing`, `body`), scrollbar |
 
 **Regra:** nenhum hex solto em componentes — só `var(--nome)` ou classes Tailwind mapeadas para essas vars.
 
 ### 5.1 Cores Locafull (variáveis CSS)
 
-| Variável | Hex | Uso |
-|----------|-----|-----|
-| `--primary` | `#1B2A3E` | Marca, títulos, header, início do gradiente hero |
-| `--secondary` | `#0f1824` | Hover, footer escuro |
-| `--primary-light` | `#2d4158` | Bordas, fundos suaves (nome alinhado ao admin) |
-| `--alert-2` | `#F39233` | CTA laranja (admin usa `--alert-2` para laranja) |
-| `--alert-3` | `#ffe0b2` | Fundo suave CTA |
-| `--success` | `#25D366` | Botão WhatsApp |
-| `--danger` | `#B71C1C` | Erros (futuro) |
-| `--info` | `#0288D1` | Links informativos (futuro) |
-| `--white` | `#FFFFFF` | Cards, header, faixas |
-| `--light-gray` | `#f5f5f5` | Fundo da página |
-| `--light-gray2` | `#e0e0e0` | Bordas |
-| `--dark-gray` | `#5E5E5E` | Texto corpo |
-| `--black-1` | `#171717` | Labels fortes |
-| `--gray-25` … `--gray-900` | escala admin | Divisores; **escala completa** no scaffold |
+| Variável                   | Hex          | Uso                                              |
+| -------------------------- | ------------ | ------------------------------------------------ |
+| `--primary`                | `#1B2A3E`    | Marca, títulos, header, início do gradiente hero |
+| `--secondary`              | `#0f1824`    | Hover, footer escuro                             |
+| `--primary-light`          | `#2d4158`    | Bordas, fundos suaves (nome alinhado ao admin)   |
+| `--alert-2`                | `#F39233`    | CTA laranja (admin usa `--alert-2` para laranja) |
+| `--alert-3`                | `#ffe0b2`    | Fundo suave CTA                                  |
+| `--success`                | `#25D366`    | Botão WhatsApp                                   |
+| `--danger`                 | `#B71C1C`    | Erros (futuro)                                   |
+| `--info`                   | `#0288D1`    | Links informativos (futuro)                      |
+| `--white`                  | `#FFFFFF`    | Cards, header, faixas                            |
+| `--light-gray`             | `#f5f5f5`    | Fundo da página                                  |
+| `--light-gray2`            | `#e0e0e0`    | Bordas                                           |
+| `--dark-gray`              | `#5E5E5E`    | Texto corpo                                      |
+| `--black-1`                | `#171717`    | Labels fortes                                    |
+| `--gray-25` … `--gray-900` | escala admin | Divisores; **escala completa** no scaffold       |
 
 **Hero:** `bg-gradient-to-r from-[var(--primary)] to-[var(--alert-2)]` (ou utilitários Tailwind mapeados).
 
@@ -245,12 +245,12 @@ Headings com `font-family: var(--font-secondary)`; corpo com `var(--font-primary
 
 Padrão Tailwind: `sm` 640, `md` 768, `lg` 1024, `xl` 1280. Mobile-first.
 
-| Elemento | &lt; md | lg+ |
-|----------|--------|-----|
-| Menu | Drawer / hambúrguer | Links horizontais |
-| Hero | Empilhado | Texto esq. + imagem dir. |
-| Contatos | 1 coluna | Grid 2–4 colunas |
-| Container | `max-w-7xl mx-auto px-4 sm:px-6 lg:px-8` | |
+| Elemento  | &lt; md                                  | lg+                      |
+| --------- | ---------------------------------------- | ------------------------ |
+| Menu      | Drawer / hambúrguer                      | Links horizontais        |
+| Hero      | Empilhado                                | Texto esq. + imagem dir. |
+| Contatos  | 1 coluna                                 | Grid 2–4 colunas         |
+| Container | `max-w-7xl mx-auto px-4 sm:px-6 lg:px-8` |                          |
 
 ### 5.6 Componentes shadcn
 
@@ -265,10 +265,10 @@ Variantes customizadas em `components/ui/button.tsx`:
 
 ## 6. Página home (MVP)
 
-1. **Header** — nav + Instagram + WhatsApp pill  
-2. **Hero** — headline, CTA “Peça agora”, gradiente, imagem/placeholder (`next/image` quando houver foto)  
-3. **ContactStrip** — telefone, WhatsApp, e-mail, endereço (dados em `lib/constants.ts`)  
-4. **Footer**  
+1. **Header** — nav + Instagram + WhatsApp pill
+2. **Hero** — headline, CTA “Peça agora”, gradiente, imagem/placeholder (`next/image` quando houver foto)
+3. **ContactStrip** — telefone, WhatsApp, e-mail, endereço (dados em `lib/constants.ts`)
+4. **Footer**
 5. **FloatingWhatsApp** — fixo, `wa.me/556230300077`
 
 **Sem** bloco “Nossa história” na v1.
@@ -320,10 +320,10 @@ Sem Playwright no MVP.
 
 ## 11. Roadmap pós-MVP
 
-1. Páginas marketing completas  
-2. Fluxo `/pedido` → agenda → `/checkout` (PIX + cartão)  
-3. Domínio próprio + GA4  
-4. Painel admin / logística  
+1. Páginas marketing completas
+2. Fluxo `/pedido` → agenda → `/checkout` (PIX + cartão)
+3. Domínio próprio + GA4
+4. Painel admin / logística
 
 ---
 

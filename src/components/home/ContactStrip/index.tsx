@@ -42,7 +42,7 @@ const CONTACT_ITEMS = [
 export function ContactStrip({ className }: IContactStrip) {
   return (
     <section
-      className={`bg-[var(--white)] py-12 ${className ?? ""}`}
+      className={`bg-white py-12 ${className ?? ""}`}
       aria-labelledby="contact-strip-heading"
     >
       <h2 id="contact-strip-heading" className="sr-only">
@@ -53,12 +53,12 @@ export function ContactStrip({ className }: IContactStrip) {
           const Icon = item.icon;
           const content = (
             <>
-              <Icon className="size-5 shrink-0 text-[var(--primary)]" />
+              <Icon className="text-primary size-5 shrink-0" />
               <div>
-                <p className="text-[length:var(--font-body6)] font-[var(--font-weight-bold)] uppercase tracking-wide text-[var(--black-1)]">
+                <p className="text-black-1 text-xs font-bold tracking-wide uppercase">
                   {item.label}
                 </p>
-                <p className="mt-1 text-[length:var(--font-body4)] font-[var(--font-weight-medium)] text-[var(--alert-2)]">
+                <p className="text-warning mt-1 text-base font-medium">
                   {item.value}
                 </p>
               </div>

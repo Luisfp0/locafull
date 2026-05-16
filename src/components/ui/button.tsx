@@ -5,18 +5,15 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-[var(--border-radius)] text-sm font-[var(--font-weight-semi-bold)] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ring)] disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "focus-visible:ring-ring inline-flex items-center justify-center gap-2 rounded-lg text-sm font-semibold whitespace-nowrap transition-colors focus-visible:ring-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default:
-          "bg-[var(--alert-2)] text-[var(--white)] hover:bg-[var(--orange-primary)] shadow-[var(--box-shadow-1)]",
-        secondary:
-          "bg-[var(--primary)] text-[var(--white)] hover:bg-[var(--secondary)]",
-        outline:
-          "border border-[var(--light-gray2)] bg-[var(--white)] text-[var(--primary)] hover:bg-[var(--gray-50)]",
-        ghost: "text-[var(--primary)] hover:bg-[var(--gray-50)]",
-        whatsapp: "bg-[var(--success)] text-[var(--white)] hover:opacity-90",
+        default: "bg-warning shadow-brand hover:bg-orange-primary text-white",
+        secondary: "bg-primary hover:bg-secondary text-white",
+        outline: "border-border text-primary border bg-white hover:bg-gray-50",
+        ghost: "text-primary hover:bg-gray-50",
+        whatsapp: "bg-success text-white hover:opacity-90",
       },
       size: {
         default: "h-11 px-6 py-2",
@@ -32,12 +29,10 @@ const buttonVariants = cva(
   },
 );
 
-export interface ButtonProps
-  extends
-    React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
-  asChild?: boolean;
-}
+export type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement> &
+  VariantProps<typeof buttonVariants> & {
+    asChild?: boolean;
+  };
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant, size, asChild = false, ...props }, ref) => {

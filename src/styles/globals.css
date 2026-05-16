@@ -1,27 +1,47 @@
+/*
+ * tokens.css (:root) = valores reais (hex, rem) — alinhado ao admin.
+ * @theme = só o que vira classe Tailwind no JSX (bg-primary, text-headline-4…).
+ * Pesos (font-bold) e cinzas padrão ficam no default do Tailwind.
+ */
 @import "./tokens.css";
 @import "tailwindcss";
 
 @theme inline {
+  /* Marca */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-primary: var(--primary);
+  --color-primary-light: var(--primary-light);
   --color-secondary: var(--secondary);
   --color-warning: var(--alert-2);
+  --color-alert-3: var(--alert-3);
   --color-success: var(--success);
-  --color-card: var(--card);
-  --color-card-foreground: var(--card-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
+  --color-orange-primary: var(--orange-primary);
+  --color-black-1: var(--black-1);
+  --color-overlay: var(--semi-transparent-black);
+
+  --color-gray-50: var(--gray-50);
+  --color-gray-100: var(--gray-100);
+  --color-gray-200: var(--gray-200);
+  --color-gray-300: var(--gray-300);
+  --color-gray-500: var(--gray-500);
+
+  /* Formulários (Input, focus ring) */
   --color-border: var(--border);
   --color-input: var(--input);
+  --color-input-background: var(--input-background);
   --color-ring: var(--ring);
-  --color-destructive: var(--destructive);
-  --font-sans: var(--font-primary);
-  --font-heading: var(--font-secondary);
-  --radius-sm: calc(var(--radius) - 4px);
+
+  /* Tamanhos de título da marca */
+  --text-headline-3: var(--font-headline3);
+  --text-headline-4: var(--font-headline4);
+
+  /* Radius e sombra usados nos componentes */
   --radius-md: calc(var(--radius) - 2px);
-  --radius-lg: var(--radius);
-  --radius-xl: var(--border-radius-1);
+  --radius-lg: var(--border-radius);
+  --radius-2xl: var(--border-radius-2);
+
+  --shadow-brand: var(--box-shadow-1);
 }
 
 *,

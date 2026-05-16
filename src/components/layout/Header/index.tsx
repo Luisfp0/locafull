@@ -1,11 +1,10 @@
 "use client";
 
 import { Menu } from "lucide-react";
-
-import { InstagramIcon } from "@/components/icons/InstagramIcon";
 import Link from "next/link";
 import { useState } from "react";
 
+import { InstagramIcon } from "@/components/icons/InstagramIcon";
 import { Logo } from "@/components/icons/Logo";
 import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { Button } from "@/components/ui/button";
@@ -26,7 +25,7 @@ export function Header({ className }: IHeader) {
   return (
     <>
       <header
-        className={`sticky top-0 z-40 border-b border-[var(--light-gray2)] bg-[var(--white)]/95 backdrop-blur ${className ?? ""}`}
+        className={`border-border sticky top-0 z-40 border-b bg-white/95 backdrop-blur ${className ?? ""}`}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
           <Logo />
@@ -35,7 +34,7 @@ export function Header({ className }: IHeader) {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-[length:var(--font-body5)] font-[var(--font-weight-medium)] text-[var(--primary)] transition-colors hover:text-[var(--alert-2)]"
+                className="text-primary hover:text-warning text-sm font-medium transition-colors"
               >
                 {link.label}
               </Link>
@@ -46,7 +45,7 @@ export function Header({ className }: IHeader) {
               href={INSTAGRAM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden rounded-full p-2 text-[var(--primary)] hover:bg-[var(--gray-50)] sm:inline-flex"
+              className="text-primary hidden rounded-full p-2 hover:bg-gray-50 sm:inline-flex"
               aria-label="Instagram Locafull"
             >
               <InstagramIcon className="size-5" />
@@ -68,7 +67,7 @@ export function Header({ className }: IHeader) {
             </Button>
             <button
               type="button"
-              className="inline-flex rounded-[var(--border-radius)] p-2 text-[var(--primary)] hover:bg-[var(--gray-50)] md:hidden"
+              className="text-primary inline-flex rounded-lg p-2 hover:bg-gray-50 md:hidden"
               onClick={() => setMenuOpen(true)}
               aria-label="Abrir menu"
             >

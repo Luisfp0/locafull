@@ -7,12 +7,12 @@ describe("Button", () => {
   it("renders default CTA variant", () => {
     render(<Button>Peça agora</Button>);
     const button = screen.getByRole("button", { name: /peça agora/i });
-    expect(button.className).toContain("alert-2");
+    expect(button.className).toMatch(/bg-warning/);
   });
 
   it("renders secondary variant", () => {
     render(<Button variant="secondary">Secundário</Button>);
     const button = screen.getByRole("button", { name: /secundário/i });
-    expect(button.className).toContain("primary");
+    expect(button.className).toMatch(/bg-primary/);
   });
 });
