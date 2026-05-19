@@ -33,17 +33,17 @@ export const WHAT_WE_DO_DESCRIPTION =
 export const WHAT_WE_DO_ITEMS = [
   {
     title: "Locação de mini caçambas",
-    imageSrc: "/images/servicos/cacamba-corredor.jpg",
+    imageSrc: "/images/cacamba.jpeg",
     imageAlt: "Mini caçamba Locafull em corredor de obra com entulho",
   },
   {
     title: "Locação de tambores",
-    imageSrc: "/images/servicos/tambor-reforma.jpg",
+    imageSrc: "/images/tambor-reforma.jpg",
     imageAlt: "Tambor Locafull com rodízios em ambiente de reforma",
   },
   {
     title: "Locação de barris",
-    imageSrc: "/images/servicos/tambor-entulho.jpg",
+    imageSrc: "/images/barril.jpeg",
     imageAlt: "Tambor Locafull cheio de entulho de construção",
   },
 ] as const;

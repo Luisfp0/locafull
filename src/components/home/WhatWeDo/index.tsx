@@ -24,7 +24,6 @@ export function WhatWeDo({ className }: IWhatWeDo) {
           >
             O que nós fazemos
           </h2>
-          <p className="text-alert-3 mt-2 text-sm">veja abaixo</p>
         </header>
 
         <ul className="mt-10 grid list-none gap-6 p-0 md:grid-cols-3 md:gap-8">
