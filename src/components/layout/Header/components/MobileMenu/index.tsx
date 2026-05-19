@@ -2,6 +2,7 @@
 
 import { X } from "lucide-react";
 import Link from "next/link";
+import { useEffect } from "react";
 
 import { InstagramIcon } from "@/components/icons/InstagramIcon";
 import { Button } from "@/components/ui/button";
@@ -11,21 +12,49 @@ import {
   WHATSAPP_DISPLAY,
   WHATSAPP_NUMBER,
 } from "@/lib/constants";
-import { buildWaLink } from "@/lib/utils";
+import { buildWaLink, cn } from "@/lib/utils";
 
 import type { IMobileMenu } from "./types";
 
 export function MobileMenu({ open, onClose }: IMobileMenu) {
-  if (!open) return null;
+  useEffect(() => {
+    if (!open) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") onClose();
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [open, onClose]);
 
   return (
     <div
-      className="bg-overlay fixed inset-0 z-50 md:hidden"
-      role="dialog"
-      aria-modal="true"
-      aria-label="Menu de navegação"
+      className={cn(
+        "fixed inset-0 z-50 md:hidden",
+        !open && "pointer-events-none",
+      )}
+      aria-hidden={!open}
     >
-      <div className="shadow-brand ml-auto flex h-full w-[min(100%,20rem)] flex-col bg-white">
+      <button
+        type="button"
+        className={cn(
+          "bg-overlay absolute inset-0 transition-opacity duration-300",
+          open ? "opacity-100" : "opacity-0",
+        )}
+        onClick={onClose}
+        aria-label="Fechar menu"
+        tabIndex={open ? 0 : -1}
+      />
+      <div
+        className={cn(
+          "shadow-brand relative ml-auto flex h-full w-[min(100%,20rem)] flex-col bg-white transition-transform duration-300 ease-out",
+          open ? "translate-x-0" : "translate-x-full",
+        )}
+        role="dialog"
+        aria-modal={open}
+        aria-label="Menu de navegação"
+      >
         <div className="border-border flex items-center justify-between border-b px-4 py-4">
           <span className="text-primary font-bold">Menu</span>
           <button
