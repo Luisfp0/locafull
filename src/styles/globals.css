@@ -79,6 +79,7 @@ body {
   line-height: 1.5;
 }
 
+/* Só fonte de título; cor vem das classes no JSX (text-white, text-primary, …) */
 h1,
 h2,
 h3,
@@ -86,7 +87,6 @@ h4,
 h5,
 h6 {
   font-family: var(--font-secondary);
-  color: var(--primary);
 }
 
 ::-webkit-scrollbar {

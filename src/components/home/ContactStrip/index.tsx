@@ -45,7 +45,7 @@ export function ContactStrip({ className }: IContactStrip) {
       className={`bg-white py-12 ${className ?? ""}`}
       aria-labelledby="contact-strip-heading"
     >
-      <h2 id="contact-strip-heading" className="sr-only">
+      <h2 id="contact-strip-heading" className="text-foreground sr-only">
         Contato
       </h2>
       <div className="mx-auto grid max-w-7xl gap-8 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-4 lg:px-8">
