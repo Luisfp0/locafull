@@ -7,9 +7,9 @@ export function PaymentNotice({ className }: PaymentNoticeProps) {
       role="note"
     >
       <p>
-        <span className="font-semibold">Pagamento:</span> PIX ou cartão
+        <span className="font-semibold">Pagamento:</span> PIX ou cartão.
       </p>
-      <p>Dinheiro consulte com o atendente.</p>
+      <p>Dinheiro consulte um atendente.</p>
     </div>
   );
 }

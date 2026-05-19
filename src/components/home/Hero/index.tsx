@@ -28,7 +28,11 @@ export function Hero({ className }: HeroProps) {
             </p>
           </div>
           <div className="flex flex-wrap gap-4">
-            <Button size="lg" asChild>
+            <Button
+              size="lg"
+              asChild
+              className="hover:bg-white/10 hover:text-black"
+            >
               <Link href={ROUTES.order}>Peça agora</Link>
             </Button>
             <Button
