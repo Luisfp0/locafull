@@ -21,7 +21,6 @@ export const NAV_LINKS = [
   { label: "Sobre nós", href: "/sobre" },
   { label: "O que fazemos", href: "/servicos" },
   { label: "Diferenciais", href: "/diferenciais" },
-  { label: "Contato", href: "/contato" },
 ] as const;
 
 export const WHAT_WE_DO_DESCRIPTION =
