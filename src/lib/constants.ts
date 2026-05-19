@@ -8,7 +8,7 @@ export const WHATSAPP_NUMBER =
 export const WHATSAPP_DISPLAY = "(62) 3030-0077";
 export const PHONE_DISPLAY = "(62) 3030-0077";
 export const EMAIL = "contato@locafull.com.br";
-export const ADDRESS = "Goiânia e região metropolitana — GO";
+export const ADDRESS = "Goiânia e região metropolitana";
 
 export const INSTAGRAM_URL =
   process.env.NEXT_PUBLIC_INSTAGRAM_URL ??
@@ -22,4 +22,25 @@ export const NAV_LINKS = [
   { label: "O que fazemos", href: "/servicos" },
   { label: "Diferenciais", href: "/diferenciais" },
   { label: "Contato", href: "/contato" },
+] as const;
+
+export const WHAT_WE_DO_DESCRIPTION =
+  "Somos especialistas em locação de mini caçambas, tambores e barris para obras, reformas e limpeza de terrenos em Goiânia e região. Fazemos a entrega e a retirada no local, com agilidade e equipamentos ideais para espaços menores.";
+
+export const WHAT_WE_DO_ITEMS = [
+  {
+    title: "Locação de mini caçambas",
+    imageSrc: "/images/servicos/cacamba-corredor.jpg",
+    imageAlt: "Mini caçamba Locafull em corredor de obra com entulho",
+  },
+  {
+    title: "Locação de tambores",
+    imageSrc: "/images/servicos/tambor-reforma.jpg",
+    imageAlt: "Tambor Locafull com rodízios em ambiente de reforma",
+  },
+  {
+    title: "Locação de barris",
+    imageSrc: "/images/servicos/tambor-entulho.jpg",
+    imageAlt: "Tambor Locafull cheio de entulho de construção",
+  },
 ] as const;
