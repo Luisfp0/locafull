@@ -1,3 +1,3 @@
-export interface IWhatsAppIcon {
+export type WhatsAppIconProps = {
   className?: string;
-}
+};

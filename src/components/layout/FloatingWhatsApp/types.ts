@@ -1,3 +1,3 @@
-export interface IFloatingWhatsApp {
+export type FloatingWhatsAppProps = {
   className?: string;
-}
+};

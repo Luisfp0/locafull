@@ -10,7 +10,7 @@ import {
 } from "@/lib/constants";
 import { buildWaLink } from "@/lib/utils";
 
-import type { IContactStrip } from "./types";
+import type { ContactStripProps } from "./types";
 
 const CONTACT_ITEMS = [
   {
@@ -39,7 +39,7 @@ const CONTACT_ITEMS = [
   },
 ] as const;
 
-export function ContactStrip({ className }: IContactStrip) {
+export function ContactStrip({ className }: ContactStripProps) {
   return (
     <section
       className={`bg-white py-12 ${className ?? ""}`}
@@ -54,11 +54,11 @@ export function ContactStrip({ className }: IContactStrip) {
           const content = (
             <>
               <Icon className="text-primary size-5 shrink-0" />
-              <div>
+              <div className="flex flex-col gap-1">
                 <p className="text-black-1 text-xs font-bold tracking-wide uppercase">
                   {item.label}
                 </p>
-                <p className="text-warning mt-1 text-base font-medium">
+                <p className="text-warning text-base font-medium">
                   {item.value}
                 </p>
               </div>

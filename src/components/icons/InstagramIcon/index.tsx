@@ -1,6 +1,6 @@
-import type { IInstagramIcon } from "./types";
+import type { InstagramIconProps } from "./types";
 
-export function InstagramIcon({ className }: IInstagramIcon) {
+export function InstagramIcon({ className }: InstagramIconProps) {
   return (
     <svg
       viewBox="0 0 24 24"

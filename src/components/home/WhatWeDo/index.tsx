@@ -1,22 +1,19 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
-import {
-  ROUTES,
-  WHAT_WE_DO_DESCRIPTION,
-  WHAT_WE_DO_ITEMS,
-} from "@/lib/constants";
+import { ROUTES } from "@/lib/constants";
 
-import type { IWhatWeDo } from "./types";
+import { WhatWeDoCardImage } from "./components/WhatWeDoCardImage";
+import { WHAT_WE_DO_DESCRIPTION, WHAT_WE_DO_ITEMS } from "./constants";
+import type { WhatWeDoProps } from "./types";
 
-export function WhatWeDo({ className }: IWhatWeDo) {
+export function WhatWeDo({ className }: WhatWeDoProps) {
   return (
     <section
       className={`from-primary via-primary-light to-primary bg-gradient-to-br py-16 sm:py-20 ${className ?? ""}`}
       aria-labelledby="what-we-do-heading"
     >
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex max-w-7xl flex-col gap-10 px-4 sm:px-6 lg:px-8">
         <header className="text-center">
           <h2
             id="what-we-do-heading"
@@ -26,7 +23,7 @@ export function WhatWeDo({ className }: IWhatWeDo) {
           </h2>
         </header>
 
-        <ul className="mt-10 grid list-none gap-6 p-0 md:grid-cols-3 md:gap-8">
+        <ul className="grid list-none gap-6 p-0 md:grid-cols-3 md:gap-8">
           {WHAT_WE_DO_ITEMS.map((item) => (
             <li key={item.title}>
               <article className="shadow-brand overflow-hidden rounded-2xl">
@@ -39,34 +36,17 @@ export function WhatWeDo({ className }: IWhatWeDo) {
           ))}
         </ul>
 
-        <p className="mx-auto mt-10 max-w-2xl text-center text-base leading-relaxed text-gray-100">
-          {WHAT_WE_DO_DESCRIPTION}
-        </p>
-
-        <div className="mt-8 flex justify-center">
-          <Button size="lg" asChild>
-            <Link href={ROUTES.order}>Peça agora</Link>
-          </Button>
+        <div className="flex flex-col items-center gap-8">
+          <p className="mx-auto max-w-2xl text-center text-base leading-relaxed text-gray-100">
+            {WHAT_WE_DO_DESCRIPTION}
+          </p>
+          <div className="flex justify-center">
+            <Button size="lg" asChild>
+              <Link href={ROUTES.pricing}>Ver valores e solicitar</Link>
+            </Button>
+          </div>
         </div>
       </div>
     </section>
-  );
-}
-
-function WhatWeDoCardImage({
-  item,
-}: {
-  item: (typeof WHAT_WE_DO_ITEMS)[number];
-}) {
-  return (
-    <div className="relative aspect-[4/3] w-full">
-      <Image
-        src={item.imageSrc}
-        alt={item.imageAlt}
-        fill
-        className="object-cover object-center"
-        sizes="(max-width: 768px) 100vw, 33vw"
-      />
-    </div>
   );
 }

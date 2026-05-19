@@ -17,9 +17,9 @@ import {
 import { buildWaLink } from "@/lib/utils";
 
 import { MobileMenu } from "./components/MobileMenu";
-import type { IHeader } from "./types";
+import type { HeaderProps } from "./types";
 
-export function Header({ className }: IHeader) {
+export function Header({ className }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (

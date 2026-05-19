@@ -2,9 +2,9 @@ import { WhatsAppIcon } from "@/components/icons/WhatsAppIcon";
 import { WHATSAPP_NUMBER } from "@/lib/constants";
 import { buildWaLink } from "@/lib/utils";
 
-import type { IFloatingWhatsApp } from "./types";
+import type { FloatingWhatsAppProps } from "./types";
 
-export function FloatingWhatsApp({ className }: IFloatingWhatsApp) {
+export function FloatingWhatsApp({ className }: FloatingWhatsAppProps) {
   return (
     <a
       href={buildWaLink(WHATSAPP_NUMBER)}

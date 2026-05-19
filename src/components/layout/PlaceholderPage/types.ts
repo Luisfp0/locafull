@@ -1,4 +1,4 @@
-export interface IPlaceholderPage {
+export type PlaceholderPageProps = {
   title: string;
   description?: string;
-}
+};

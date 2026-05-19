@@ -1,13 +1,16 @@
-import { PlaceholderPage } from "@/components/layout/PlaceholderPage";
-import { SiteShell } from "@/components/layout/SiteShell";
+import { OrderPage } from "@/components/order/OrderPage";
 
-export default function OrderPage() {
-  return (
-    <SiteShell>
-      <PlaceholderPage
-        title="Pedido"
-        description="Em breve você poderá solicitar sua mini caçamba online."
-      />
-    </SiteShell>
-  );
+type OrderRouteProps = {
+  searchParams: Promise<{
+    product?: string;
+    plan?: string;
+  }>;
+};
+
+export default async function OrderRoutePage({
+  searchParams,
+}: OrderRouteProps) {
+  const { product: productId, plan: planId } = await searchParams;
+
+  return <OrderPage productId={productId} planId={planId} />;
 }

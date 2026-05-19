@@ -1,6 +1,6 @@
-import type { IWhatsAppIcon } from "./types";
+import type { WhatsAppIconProps } from "./types";
 
-export function WhatsAppIcon({ className }: IWhatsAppIcon) {
+export function WhatsAppIcon({ className }: WhatsAppIconProps) {
   return (
     <svg
       viewBox="0 0 24 24"

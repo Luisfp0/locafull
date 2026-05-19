@@ -1,9 +1,10 @@
 import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
-import { ROUTES, WHAT_WE_DO_ITEMS } from "@/lib/constants";
+import { ROUTES } from "@/lib/constants";
 
 import { WhatWeDo } from "./index";
+import { WHAT_WE_DO_ITEMS } from "./constants";
 
 vi.mock("next/image", () => ({
   default: ({ src, alt }: { src: string; alt: string }) => (
@@ -24,10 +25,10 @@ describe("WhatWeDo", () => {
     }
   });
 
-  it("renders CTA linking to pedido", () => {
+  it("renders CTA linking to pricing", () => {
     render(<WhatWeDo />);
 
-    const cta = screen.getByRole("link", { name: /peça agora/i });
-    expect(cta).toHaveAttribute("href", ROUTES.order);
+    const cta = screen.getByRole("link", { name: /ver valores e solicitar/i });
+    expect(cta).toHaveAttribute("href", ROUTES.pricing);
   });
 });

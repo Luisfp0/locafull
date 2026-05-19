@@ -1,8 +1,8 @@
 import { SITE_NAME } from "@/lib/constants";
 
-import type { IFooter } from "./types";
+import type { FooterProps } from "./types";
 
-export function Footer({ className }: IFooter) {
+export function Footer({ className }: FooterProps) {
   return (
     <footer
       className={`border-border bg-secondary border-t text-white ${className ?? ""}`}

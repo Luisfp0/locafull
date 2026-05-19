@@ -1,3 +1,3 @@
-export interface IContactStrip {
+export type ContactStripProps = {
   className?: string;
-}
+};

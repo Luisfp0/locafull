@@ -1,3 +1,3 @@
-export interface IInstagramIcon {
+export type InstagramIconProps = {
   className?: string;
-}
+};

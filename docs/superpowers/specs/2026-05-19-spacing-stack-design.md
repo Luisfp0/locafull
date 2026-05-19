@@ -19,7 +19,6 @@ Eliminar o padrão atual de empilhar blocos com `mt-*` e `space-y-*` em filhos, 
 **Fora do escopo:**
 
 - Componente `Container` (`mx-auto max-w-7xl px-4` repetido)
-- ESLint custom banindo `mt-*`
 - Mudança de tokens/cores/tipografia
 - Páginas que ainda não existem no `src/`
 
@@ -33,9 +32,9 @@ Eliminar o padrão atual de empilhar blocos com `mt-*` e `space-y-*` em filhos, 
 | **Flex + gap** (`Stack` ou `grid` + `gap`) | Distância entre irmãos no mesmo grupo (título → texto → CTA, itens de lista vertical, colunas de grid)                                              |
 | **Margin**                                 | `mx-auto` para centralizar container; `ml-auto` / `mr-auto` para alinhar no flex; margem negativa pontual com comentário (ex.: overlap em `/order`) |
 
-**Não usar** `mt-*` / `mb-*` entre irmãos que podem compartilhar o mesmo `Stack` pai.
+**Evitar** `mt-*` / `mb-*` entre irmãos que podem compartilhar o mesmo `Stack` pai (margin legítima continua permitida — ver §4.3).
 
-**Substituir** `space-y-*` por `Stack` com o mesmo valor de `gap`.
+**Preferir** `Stack` em vez de `space-y-*` com o mesmo valor de `gap`.
 
 ---
 
@@ -183,7 +182,7 @@ Adicionar em `AGENTS.md` (após regras Next.js):
 ```markdown
 ## Espaçamento (Tailwind)
 
-- Entre irmãos no mesmo grupo: `Stack` ou `flex` + `gap` — não `mt-*` / `space-y-*`.
+- Entre irmãos no mesmo grupo: prefira `Stack` ou `flex` + `gap`; evite `mt-*` / `space-y-*` (margin legítima: §4.3).
 - Inset de página/card/controle: `padding`.
 - Margin permitida: `mx-auto`, `ml-auto`/`mr-auto`, margem negativa documentada.
 - Ritmos diferentes na mesma coluna: `Stack` aninhados com `gap` distintos.
@@ -201,6 +200,20 @@ Critério de aceite: **nenhuma diferença perceptível** de espaçamento em rela
 
 ---
 
-## 8. Próximo passo
+## 8. ESLint (opcional — aviso, não bloqueio)
+
+Regra **advisory** no `eslint.config.mjs`: detectar `mt-*` / `mb-*` / `space-y-*` em `className` e **sugerir** `Stack` + `gap`.
+
+| Comportamento | Detalhe                                                                                                                             |
+| ------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| Severidade    | `warn` — **não** `error`; build e commit não falham por isso                                                                        |
+| Objetivo      | Lembrar a convenção, não proibir margin em casos válidos                                                                            |
+| Allowlist     | `mx-*`, `my-*` em container; `ml-auto` / `mr-auto`; classes com comentário `eslint-disable-next-line` ou padrão documentado em §4.3 |
+
+Implementação sugerida: `no-restricted-syntax` com regex em literais `className`, ou regra local simples. Fase opcional após o refactor (§5).
+
+---
+
+## 9. Próximo passo
 
 Após revisão desta spec: invocar skill **writing-plans** para plano de implementação tarefa a tarefa.

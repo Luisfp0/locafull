@@ -26,20 +26,35 @@ pnpm test
 
 ```
 src/
-  app/                 # Rotas Next.js
+  app/                 # Rotas (só metadata + import do componente)
   components/
-    ui/                # Button, Input
+    ui/                # Button, Input (shadcn)
     layout/            # Header, Footer, SiteShell, …
-    home/              # Hero, ContactStrip
-    icons/             # Logo, WhatsApp (SVG)
-  lib/                 # constants, utils
+    home/              # Hero, WhatWeDo, ContactStrip
+    pricing/           # types, constants, utils + páginas da feature
+    order/             # OrderPage
+    icons/
+  lib/
+    routes.ts          # ROUTES
+    constants.ts       # site, nav, contato (global)
+    utils.ts
   styles/
-    tokens.css         # Variáveis CSS (:root) — fonte única de cores/tipografia
-    globals.css        # Tailwind + resets
-  types/               # Apenas .d.ts globais
+    tokens.css
+    globals.css
 ```
 
-Cada componente em pasta própria com `index.tsx` + `types.ts` (padrão admin-checkout-front).
+**Pasta de componente** (padrão admin-checkout-front):
+
+```
+ComponentName/
+  index.tsx
+  types.ts             # NomeDoComponenteProps
+  constants.ts         # dados estáticos só deste componente (opcional)
+  utils.ts             # funções só deste componente (opcional)
+  components/          # subcomponentes (mesma estrutura)
+```
+
+Tipos de domínio da feature ficam em `components/<feature>/types.ts` (ex.: `pricing/types.ts`).
 
 ## Tokens de design
 
@@ -64,11 +79,12 @@ Pre-commit roda ESLint + Prettier nos arquivos staged (`lint-staged`).
 
 ## Rotas
 
-| Rota                                                | Status      |
-| --------------------------------------------------- | ----------- |
-| `/`                                                 | Landing     |
-| `/about`, `/services`, `/differentials`, `/contact` | Placeholder |
-| `/order`, `/checkout`                               | Placeholder |
+| Rota                                   | Status      |
+| -------------------------------------- | ----------- |
+| `/`                                    | Landing     |
+| `/about`, `/differentials`, `/contact` | Placeholder |
+| `/pricing`                             | Valores     |
+| `/order`, `/checkout`                  | Placeholder |
 
 ## Spec
 

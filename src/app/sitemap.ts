@@ -5,7 +5,7 @@ import { ROUTES, SITE_URL } from "@/lib/constants";
 const paths = [
   ROUTES.home,
   ROUTES.about,
-  ROUTES.services,
+  ROUTES.pricing,
   ROUTES.differentials,
   ROUTES.contact,
   ROUTES.order,

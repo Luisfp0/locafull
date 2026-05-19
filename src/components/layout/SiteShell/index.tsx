@@ -2,9 +2,9 @@ import { FloatingWhatsApp } from "@/components/layout/FloatingWhatsApp";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
 
-import type { ISiteShell } from "./types";
+import type { SiteShellProps } from "./types";
 
-export function SiteShell({ children }: ISiteShell) {
+export function SiteShell({ children }: SiteShellProps) {
   return (
     <>
       <Header />

@@ -1,3 +1,3 @@
-export interface IHero {
+export type HeroProps = {
   className?: string;
-}
+};

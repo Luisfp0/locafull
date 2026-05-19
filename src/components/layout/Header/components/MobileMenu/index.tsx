@@ -14,9 +14,9 @@ import {
 } from "@/lib/constants";
 import { buildWaLink, cn } from "@/lib/utils";
 
-import type { IMobileMenu } from "./types";
+import type { MobileMenuProps } from "./types";
 
-export function MobileMenu({ open, onClose }: IMobileMenu) {
+export function MobileMenu({ open, onClose }: MobileMenuProps) {
   useEffect(() => {
     if (!open) return;
 

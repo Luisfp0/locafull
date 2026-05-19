@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
 
-export interface ISiteShell {
+export type SiteShellProps = {
   children: ReactNode;
-}
+};

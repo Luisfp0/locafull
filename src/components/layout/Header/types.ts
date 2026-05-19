@@ -1,3 +1,3 @@
-export interface IHeader {
+export type HeaderProps = {
   className?: string;
-}
+};

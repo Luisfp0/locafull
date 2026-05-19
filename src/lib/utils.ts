@@ -16,6 +16,13 @@ export function formatPhone(phone: string): string {
   return phone;
 }
 
+export function formatBRL(cents: number): string {
+  return new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  }).format(cents / 100);
+}
+
 export function buildWaLink(
   number: string,
   message = "Olá! Gostaria de solicitar uma mini caçamba.",

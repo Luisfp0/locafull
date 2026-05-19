@@ -1,3 +1,3 @@
-export interface IFooter {
+export type FooterProps = {
   className?: string;
-}
+};

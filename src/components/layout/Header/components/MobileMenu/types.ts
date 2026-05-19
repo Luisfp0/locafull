@@ -1,4 +1,4 @@
-export interface IMobileMenu {
+export type MobileMenuProps = {
   open: boolean;
   onClose: () => void;
-}
+};
