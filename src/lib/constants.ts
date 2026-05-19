@@ -1,3 +1,7 @@
+import { ROUTES } from "@/lib/routes";
+
+export { ROUTES } from "@/lib/routes";
+
 export const SITE_NAME = "Locafull";
 export const SITE_TAGLINE = "Agilidade que movimenta sua obra";
 export const SITE_DESCRIPTION =
@@ -18,9 +22,9 @@ export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 export const NAV_LINKS = [
-  { label: "Sobre nós", href: "/sobre" },
-  { label: "O que fazemos", href: "/servicos" },
-  { label: "Diferenciais", href: "/diferenciais" },
+  { label: "Sobre nós", href: ROUTES.about },
+  { label: "O que fazemos", href: ROUTES.services },
+  { label: "Diferenciais", href: ROUTES.differentials },
 ] as const;
 
 export const WHAT_WE_DO_DESCRIPTION =

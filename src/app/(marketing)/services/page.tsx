@@ -1,12 +1,12 @@
 import { PlaceholderPage } from "@/components/layout/PlaceholderPage";
 import { SiteShell } from "@/components/layout/SiteShell";
 
-export default function PedidoPage() {
+export default function ServicesPage() {
   return (
     <SiteShell>
       <PlaceholderPage
-        title="Pedido"
-        description="Em breve você poderá solicitar sua mini caçamba online."
+        title="O que fazemos"
+        description="Em breve você conhecerá todos os nossos serviços de locação."
       />
     </SiteShell>
   );

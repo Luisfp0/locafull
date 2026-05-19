@@ -1,7 +1,7 @@
 import { cleanup, render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
-import { WHAT_WE_DO_ITEMS } from "@/lib/constants";
+import { ROUTES, WHAT_WE_DO_ITEMS } from "@/lib/constants";
 
 import { WhatWeDo } from "./index";
 
@@ -28,6 +28,6 @@ describe("WhatWeDo", () => {
     render(<WhatWeDo />);
 
     const cta = screen.getByRole("link", { name: /peça agora/i });
-    expect(cta).toHaveAttribute("href", "/pedido");
+    expect(cta).toHaveAttribute("href", ROUTES.order);
   });
 });

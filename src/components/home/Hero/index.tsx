@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
-import { SITE_TAGLINE } from "@/lib/constants";
+import { ROUTES, SITE_TAGLINE } from "@/lib/constants";
 
 import type { IHero } from "./types";
 
@@ -27,7 +27,7 @@ export function Hero({ className }: IHero) {
           </p>
           <div className="mt-8 flex flex-wrap gap-4">
             <Button size="lg" asChild>
-              <Link href="/pedido">Peça agora</Link>
+              <Link href={ROUTES.order}>Peça agora</Link>
             </Button>
             <Button
               size="lg"
@@ -35,7 +35,7 @@ export function Hero({ className }: IHero) {
               className="border-white text-black hover:bg-white/10 hover:text-white"
               asChild
             >
-              <Link href="/contato">Fale conosco</Link>
+              <Link href={ROUTES.contact}>Fale conosco</Link>
             </Button>
           </div>
         </div>

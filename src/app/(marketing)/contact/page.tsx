@@ -1,12 +1,12 @@
 import { PlaceholderPage } from "@/components/layout/PlaceholderPage";
 import { SiteShell } from "@/components/layout/SiteShell";
 
-export default function CheckoutPage() {
+export default function ContactPage() {
   return (
     <SiteShell>
       <PlaceholderPage
-        title="Pagamento"
-        description="Em breve: pagamento e confirmação do seu pedido."
+        title="Contato"
+        description="Em breve você encontrará aqui nossos canais de atendimento."
       />
     </SiteShell>
   );

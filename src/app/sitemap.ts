@@ -1,20 +1,20 @@
 import type { MetadataRoute } from "next";
 
-import { SITE_URL } from "@/lib/constants";
+import { ROUTES, SITE_URL } from "@/lib/constants";
 
-const routes = [
-  "",
-  "/sobre",
-  "/servicos",
-  "/diferenciais",
-  "/contato",
-  "/pedido",
-  "/checkout",
-];
+const paths = [
+  ROUTES.home,
+  ROUTES.about,
+  ROUTES.services,
+  ROUTES.differentials,
+  ROUTES.contact,
+  ROUTES.order,
+  ROUTES.checkout,
+] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return routes.map((route) => ({
-    url: `${SITE_URL}${route}`,
+  return paths.map((path) => ({
+    url: `${SITE_URL}${path}`,
     lastModified: new Date(),
   }));
 }

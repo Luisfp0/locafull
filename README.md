@@ -64,11 +64,11 @@ Pre-commit roda ESLint + Prettier nos arquivos staged (`lint-staged`).
 
 ## Rotas
 
-| Rota                                               | Status      |
-| -------------------------------------------------- | ----------- |
-| `/`                                                | Landing     |
-| `/sobre`, `/servicos`, `/diferenciais`, `/contato` | Placeholder |
-| `/pedido`, `/checkout`                             | Placeholder |
+| Rota                                                | Status      |
+| --------------------------------------------------- | ----------- |
+| `/`                                                 | Landing     |
+| `/about`, `/services`, `/differentials`, `/contact` | Placeholder |
+| `/order`, `/checkout`                               | Placeholder |
 
 ## Spec
 

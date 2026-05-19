@@ -2,7 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
-import { WHAT_WE_DO_DESCRIPTION, WHAT_WE_DO_ITEMS } from "@/lib/constants";
+import {
+  ROUTES,
+  WHAT_WE_DO_DESCRIPTION,
+  WHAT_WE_DO_ITEMS,
+} from "@/lib/constants";
 
 import type { IWhatWeDo } from "./types";
 
@@ -42,7 +46,7 @@ export function WhatWeDo({ className }: IWhatWeDo) {
 
         <div className="mt-8 flex justify-center">
           <Button size="lg" asChild>
-            <Link href="/pedido">Peça agora</Link>
+            <Link href={ROUTES.order}>Peça agora</Link>
           </Button>
         </div>
       </div>
