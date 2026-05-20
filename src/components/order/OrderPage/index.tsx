@@ -4,12 +4,15 @@ import { PlaceholderPage } from "@/components/layout/PlaceholderPage";
 import { SiteShell } from "@/components/layout/SiteShell";
 import {
   findPricingPlanLabel,
+  findPricingPlanPrice,
   findPricingProduct,
 } from "@/components/pricing/utils";
 import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/lib/constants";
+import { formatBRL } from "@/lib/utils";
 
 import { OrderActions } from "./components/OrderActions";
+import { OrderForm } from "./components/OrderForm";
 import { OrderSummaryRow } from "./components/OrderSummaryRow";
 import type { OrderPageProps } from "./types";
 
@@ -17,23 +20,32 @@ export function OrderPage({ productId, planId }: OrderPageProps) {
   const product = productId ? findPricingProduct(productId) : undefined;
   const planLabel =
     productId && planId ? findPricingPlanLabel(productId, planId) : undefined;
+  const priceCents =
+    productId && planId ? findPricingPlanPrice(productId, planId) : undefined;
 
-  if (product && planLabel) {
+  if (product && planLabel && priceCents !== undefined) {
     return (
       <SiteShell>
-        <section className="mx-auto flex max-w-2xl flex-col gap-6 px-4 py-16 sm:px-6 lg:px-8">
-          <h1 className="text-headline-4 text-primary font-bold">Pedido</h1>
+        <section className="mx-auto flex max-w-2xl flex-col gap-8 px-4 py-16 sm:px-6 lg:px-8">
+          <div className="flex flex-col gap-2">
+            <h1 className="text-headline-4 text-primary font-bold">Pedido</h1>
+            <p className="text-foreground text-base">
+              Preencha seus dados de entrega e pague com cartão para confirmar.
+            </p>
+          </div>
+
           <div className="flex flex-col gap-6">
-            <p className="text-foreground text-base">Você selecionou:</p>
             <dl className="border-border flex flex-col gap-3 rounded-xl border bg-white p-6">
               <OrderSummaryRow label="Equipamento" value={product.name} />
               <OrderSummaryRow label="Plano" value={planLabel} />
+              <OrderSummaryRow label="Total" value={formatBRL(priceCents)} />
             </dl>
-            <p className="text-foreground text-sm leading-relaxed">
-              Em breve você poderá concluir o pedido e o pagamento (PIX ou
-              dinheiro) por aqui. Por enquanto, confirme pelo WhatsApp ou
-              aguarde a próxima etapa do checkout.
-            </p>
+
+            <OrderForm
+              productId={productId as string}
+              planId={planId as string}
+            />
+
             <OrderActions />
           </div>
         </section>

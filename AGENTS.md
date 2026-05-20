@@ -20,3 +20,5 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - Subcomponentes em `components/<Sub>/` com a mesma estrutura.
 - `app/` fino: rota + metadata; UI em `components/`.
 - Dados/tipos de feature: `components/<feature>/types.ts`, `constants.ts`, `utils.ts`.
+- **Enforcement automático:** `pnpm check:folders` (também no `pnpm lint` e pre-commit).
+- Spec: `docs/superpowers/specs/2026-05-19-folder-conventions-design.md`.

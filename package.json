@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint .",
+    "check:folders": "node scripts/check-folder-conventions.mjs",
+    "lint": "eslint . && pnpm check:folders",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "typecheck": "tsc --noEmit",
@@ -15,6 +16,9 @@
     "prepare": "husky"
   },
   "lint-staged": {
+    "src/{app,components}/**/*.{ts,tsx}": [
+      "node scripts/check-folder-conventions.mjs"
+    ],
     "*.{ts,tsx,js,jsx,mjs}": [
       "eslint --fix",
       "prettier --write"
@@ -31,6 +35,7 @@
     "next": "16.2.6",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "stripe": "^22.1.1",
     "tailwind-merge": "^3.6.0"
   },
   "devDependencies": {

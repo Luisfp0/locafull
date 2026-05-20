@@ -29,3 +29,4 @@ ComponentName/
 - `components/home/WhatWeDo/` — constants, WhatWeDoCardImage.
 - Removidos `lib/types.ts`, `lib/pricing-catalog.ts`.
 - Testes: `PricingPage.test.tsx`, `WhatWeDo.test.tsx` colados ao componente.
+- Enforcement: `pnpm check:folders` (pre-commit + `pnpm lint`); regra Cursor em `.cursor/rules/component-folders.mdc`.

@@ -13,7 +13,7 @@ describe("PricingPage", () => {
         name: /valores e equipamentos/i,
       }),
     ).toBeInTheDocument();
-    expect(screen.getByText(/pix ou cartão/i)).toBeInTheDocument();
+    expect(screen.getByText(/cartão/i)).toBeInTheDocument();
     expect(
       screen.getByRole("heading", { level: 2, name: /mini caçamba/i }),
     ).toBeInTheDocument();

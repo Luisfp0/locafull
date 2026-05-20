@@ -1,0 +1,37 @@
+---
+description: Convenções de pastas admin-checkout-front (components + app fino)
+alwaysApply: true
+---
+
+# Pastas de componente (Locafull)
+
+Siga sempre esta estrutura — o pre-commit roda `pnpm check:folders`.
+
+```
+ComponentName/
+  index.tsx        # só orquestra; sem types/constants/subcomponentes inline
+  types.ts         # NomeProps (sem prefixo I obrigatório)
+  constants.ts     # dados estáticos (opcional)
+  utils.ts         # funções locais (opcional)
+  components/      # subcomponentes com a mesma estrutura
+```
+
+## Regras
+
+- **Nunca** `type FooProps` / `interface FooProps` dentro de `index.tsx` → use `types.ts`.
+- **Nunca** subcomponente `function Field()` dentro de `index.tsx` → use `components/Field/`.
+- **Nunca** `const DEFAULT_* = { ... }` grande no `index.tsx` → use `constants.ts`.
+- **`app/**/page.tsx` fino**: metadata + import de `@/components/*`; sem UI inline, sem `@/components/ui/*`.
+- Feature compartilhada: `components/<feature>/types.ts`, `constants.ts`, `utils.ts`.
+
+## Exemplo
+
+```tsx
+// app/checkout/success/page.tsx
+import { CheckoutSuccessPage } from "@/components/checkout/CheckoutSuccessPage";
+export default function Page() {
+  return <CheckoutSuccessPage />;
+}
+```
+
+Referência: `docs/superpowers/specs/2026-05-19-folder-conventions-design.md`
