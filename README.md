@@ -65,13 +65,9 @@ Para alterar WhatsApp, menu ou textos: `src/lib/constants.ts`.
 
 ## Variáveis de ambiente
 
-Copie `.env.example` para `.env.local`:
+Copie `.env.example` para `.env.local` (desenvolvimento).
 
-```env
-NEXT_PUBLIC_SITE_URL=http://localhost:3000
-NEXT_PUBLIC_WHATSAPP_NUMBER=556230300077
-NEXT_PUBLIC_INSTAGRAM_URL=https://www.instagram.com/locafull_locacoes/
-```
+**Produção (Vercel):** checklist completo em [`docs/deploy-producao.md`](docs/deploy-producao.md).
 
 ## Husky
 
@@ -79,12 +75,12 @@ Pre-commit roda ESLint + Prettier nos arquivos staged (`lint-staged`).
 
 ## Rotas
 
-| Rota                                   | Status      |
-| -------------------------------------- | ----------- |
-| `/`                                    | Landing     |
-| `/about`, `/differentials`, `/contact` | Placeholder |
-| `/pricing`                             | Valores     |
-| `/order`, `/checkout`                  | Placeholder |
+| Rota                                    | Status                                 |
+| --------------------------------------- | -------------------------------------- |
+| `/`                                     | Landing                                |
+| `/pricing`                              | Valores + checkout (`?product=&plan=`) |
+| `/checkout/success`, `/checkout/cancel` | Pós-pagamento Stripe                   |
+| `/order`                                | Redireciona para `/pricing`            |
 
 ## Spec
 

@@ -17,13 +17,17 @@ Em **Settings → API**:
 
 A publishable key (`sb_publishable_…`) não é usada neste fluxo (webhook no servidor).
 
-## 3. Webhook Stripe (local)
+## 3. Webhook Stripe
+
+**Local:**
 
 ```bash
 stripe listen --forward-to localhost:3000/api/stripe/webhook
 ```
 
 Copie o `whsec_…` para `STRIPE_WEBHOOK_SECRET` no `.env.local`.
+
+**Produção (Vercel):** endpoint `https://locafull.vercel.app/api/stripe/webhook` — ver `docs/deploy-producao.md`.
 
 ## 4. Conferir pedido
 

@@ -4,6 +4,8 @@ import type Stripe from "stripe";
 import { insertOrderFromCheckoutSession } from "@/lib/orders/insert-order";
 import { getStripe } from "@/lib/stripe";
 
+export const runtime = "nodejs";
+
 export async function POST(request: Request) {
   const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET;
 
