@@ -2,6 +2,15 @@
 
 Site: **https://locafull.vercel.app**
 
+## Desenvolvimento local (`.env.local`)
+
+O `.env.example` e o seu `.env.local` têm blocos comentados **LOCAL** vs **PRODUÇÃO** para `NEXT_PUBLIC_SITE_URL` e `STRIPE_WEBHOOK_SECRET`. Deixe **uma linha ativa** de cada. Após trocar, reinicie `pnpm dev`.
+
+- **Local:** `stripe listen` + `whsec_` do terminal
+- **Produção no PC:** descomente URL e webhook do Dashboard (ou teste direto em locafull.vercel.app)
+
+---
+
 ## 1. Variáveis na Vercel
 
 **Vercel** → projeto **locafull** → **Settings** → **Environment Variables** → marque **Production** (e Preview se quiser o mesmo fluxo em PRs).
