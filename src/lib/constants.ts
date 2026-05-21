@@ -19,8 +19,12 @@ export const INSTAGRAM_URL =
   process.env.NEXT_PUBLIC_INSTAGRAM_URL ??
   "https://www.instagram.com/locafull_locacoes/";
 
+const siteUrlFromEnv = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+
 export const SITE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  siteUrlFromEnv && siteUrlFromEnv.length > 0
+    ? siteUrlFromEnv
+    : "http://localhost:3000";
 
 export const NAV_LINKS = [
   { label: "Home", href: ROUTES.home },
