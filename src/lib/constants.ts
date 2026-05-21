@@ -20,11 +20,14 @@ export const INSTAGRAM_URL =
   "https://www.instagram.com/locafull_locacoes/";
 
 const siteUrlFromEnv = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+const vercelUrl = process.env.VERCEL_URL
+  ? `https://${process.env.VERCEL_URL}`
+  : undefined;
 
 export const SITE_URL =
   siteUrlFromEnv && siteUrlFromEnv.length > 0
     ? siteUrlFromEnv
-    : "http://localhost:3000";
+    : (vercelUrl ?? "http://localhost:3000");
 
 export const NAV_LINKS = [
   { label: "Home", href: ROUTES.home },
