@@ -2,7 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
-import { ROUTES, SITE_TAGLINE } from "@/lib/constants";
+import { ROUTES, SITE_TAGLINE, WHATSAPP_NUMBER } from "@/lib/constants";
+import { buildWaLink } from "@/lib/utils";
 
 import type { HeroProps } from "./types";
 
@@ -33,7 +34,7 @@ export function Hero({ className }: HeroProps) {
               asChild
               className="hover:bg-white/10 hover:text-black"
             >
-              <Link href={ROUTES.order}>Peça agora</Link>
+              <Link href={ROUTES.pricing}>Peça agora</Link>
             </Button>
             <Button
               size="lg"
@@ -41,7 +42,13 @@ export function Hero({ className }: HeroProps) {
               className="border-white text-black hover:bg-white/10 hover:text-white"
               asChild
             >
-              <Link href={ROUTES.contact}>Fale conosco</Link>
+              <a
+                href={buildWaLink(WHATSAPP_NUMBER)}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Fale conosco
+              </a>
             </Button>
           </div>
         </div>

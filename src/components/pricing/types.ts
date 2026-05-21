@@ -27,4 +27,6 @@ export type PricingProduct = {
 
 export type PricingPageProps = {
   className?: string;
+  productId?: string;
+  planId?: string;
 };

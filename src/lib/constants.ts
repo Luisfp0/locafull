@@ -9,6 +9,7 @@ export const SITE_DESCRIPTION =
 
 export const WHATSAPP_NUMBER =
   process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? "556230300077";
+
 export const WHATSAPP_DISPLAY = "(62) 3030-0077";
 export const PHONE_DISPLAY = "(62) 3030-0077";
 export const EMAIL = "contato@locafull.com.br";
@@ -22,7 +23,6 @@ export const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 export const NAV_LINKS = [
-  { label: "Sobre nós", href: ROUTES.about },
+  { label: "Home", href: ROUTES.home },
   { label: "Valores", href: ROUTES.pricing },
-  { label: "Diferenciais", href: ROUTES.differentials },
 ] as const;

@@ -4,12 +4,10 @@ import { ROUTES, SITE_URL } from "@/lib/constants";
 
 const paths = [
   ROUTES.home,
-  ROUTES.about,
   ROUTES.pricing,
-  ROUTES.differentials,
-  ROUTES.contact,
-  ROUTES.order,
   ROUTES.checkout,
+  ROUTES.checkoutSuccess,
+  ROUTES.checkoutCancel,
 ] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {

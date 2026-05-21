@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import type Stripe from "stripe";
 
+import { insertOrderFromCheckoutSession } from "@/lib/orders/insert-order";
 import { getStripe } from "@/lib/stripe";
 
 export async function POST(request: Request) {
@@ -39,12 +40,19 @@ export async function POST(request: Request) {
 
   if (event.type === "checkout.session.completed") {
     const session = event.data.object as Stripe.Checkout.Session;
+    const result = await insertOrderFromCheckoutSession(session);
+
+    if ("error" in result) {
+      console.error("[stripe webhook] order persist failed", {
+        sessionId: session.id,
+        error: result.error,
+      });
+      return NextResponse.json({ error: result.error }, { status: 500 });
+    }
 
     console.info("[stripe webhook] checkout.session.completed", {
       sessionId: session.id,
-      amountTotal: session.amount_total,
-      customerEmail: session.customer_details?.email,
-      metadata: session.metadata,
+      orderInserted: result.inserted,
     });
   }
 

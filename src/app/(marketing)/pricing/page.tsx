@@ -7,10 +7,19 @@ export const metadata = {
     "Tabela de preços de mini caçambas, tambores e barris Locafull em Goiânia. Pagamento via cartão.",
 };
 
-export default function Page() {
+type PricingRouteProps = {
+  searchParams: Promise<{
+    product?: string;
+    plan?: string;
+  }>;
+};
+
+export default async function Page({ searchParams }: PricingRouteProps) {
+  const { product: productId, plan: planId } = await searchParams;
+
   return (
     <SiteShell>
-      <PricingPage />
+      <PricingPage productId={productId} planId={planId} />
     </SiteShell>
   );
 }

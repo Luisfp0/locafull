@@ -4,7 +4,7 @@ import { PRICING_PRODUCTS } from "./constants";
 
 export function buildOrderHref(productId: string, planId: string): string {
   const params = new URLSearchParams({ product: productId, plan: planId });
-  return `${ROUTES.order}?${params.toString()}`;
+  return `${ROUTES.pricing}?${params.toString()}`;
 }
 
 export function findPricingProduct(productId: string) {
