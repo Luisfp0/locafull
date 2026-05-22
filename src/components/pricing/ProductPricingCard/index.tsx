@@ -11,7 +11,10 @@ export function ProductPricingCard({ product }: ProductPricingCardProps) {
   const defaultPlanId = product.plans[0]?.id ?? product.combos?.[0]?.id;
 
   return (
-    <article className="shadow-brand border-border overflow-hidden rounded-2xl border bg-white">
+    <article
+      id={`product-${product.id}`}
+      className="shadow-brand border-border overflow-hidden rounded-2xl border bg-white"
+    >
       <div className="md:grid md:grid-cols-2">
         <div className="relative aspect-[4/3] w-full md:aspect-auto md:min-h-full">
           <Image

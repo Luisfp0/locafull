@@ -57,12 +57,8 @@ export function OrderForm({ productId, planId }: OrderFormProps) {
   }
 
   return (
-    <form className="flex flex-col gap-6" onSubmit={handleSubmit} noValidate>
-      <div className="flex flex-col gap-4">
-        <h2 className="text-primary text-lg font-semibold">
-          Dados para entrega
-        </h2>
-
+    <form className="flex flex-col gap-5" onSubmit={handleSubmit} noValidate>
+      <div className="flex flex-col gap-3">
         <Field id="order-name" label="Nome completo" required>
           <Input
             id="order-name"

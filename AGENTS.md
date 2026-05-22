@@ -22,3 +22,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - Dados/tipos de feature: `components/<feature>/types.ts`, `constants.ts`, `utils.ts`.
 - **Enforcement automático:** `pnpm check:folders` (também no `pnpm lint` e pre-commit).
 - Spec: `docs/superpowers/specs/2026-05-19-folder-conventions-design.md`.
+
+## Commits
+
+- **Conventional Commits** obrigatório: `feat`, `fix`, `docs`, etc. + descrição curta (ver `.cursor/rules/conventional-commits.mdc`).

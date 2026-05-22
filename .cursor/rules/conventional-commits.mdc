@@ -1,0 +1,48 @@
+---
+description: Mensagens de commit no formato Conventional Commits (prefixo em inglês)
+alwaysApply: true
+---
+
+# Conventional Commits
+
+Sempre use **Conventional Commits** ao criar commits neste repositório.
+
+## Formato
+
+```
+<type>(<scope opcional>): <descrição curta em português>
+
+[corpo opcional]
+```
+
+- **type** em inglês: `feat`, `fix`, `docs`, `style`, `refactor`, `test`, `chore`, `perf`, `ci`, `build`
+- **scope** opcional: área afetada (`pricing`, `checkout`, `ui`, etc.)
+- **descrição**: imperativo, minúscula, sem ponto final — pode ser em português (padrão do repo)
+
+## Exemplos (como no histórico do projeto)
+
+```
+feat(pricing): modal de checkout centralizado sobre valores
+fix: usar VERCEL_URL quando NEXT_PUBLIC_SITE_URL não estiver definida
+docs: spec e plano do modal de checkout em /pricing
+test: cobrir abertura do modal via query em PricingPage
+chore: adiciona regra Cursor para conventional commits
+```
+
+## Quando usar cada type
+
+| Type | Uso |
+|------|-----|
+| `feat` | Nova funcionalidade ou comportamento visível ao usuário |
+| `fix` | Correção de bug |
+| `docs` | Specs, README, comentários de documentação |
+| `style` | Formatação/visual sem mudar lógica |
+| `refactor` | Reestruturação sem feat nem fix |
+| `test` | Só testes |
+| `chore` | Tooling, deps, regras, configs |
+
+## Não fazer
+
+- Mensagens vagas: `update`, `fix stuff`, `WIP`
+- Vários assuntos não relacionados no mesmo commit
+- Pular hooks (`--no-verify`) salvo pedido explícito do usuário
