@@ -26,17 +26,9 @@ export function PricingPageClient({
   const isOpen = Boolean(product && planId && priceCents !== undefined);
 
   const handleClose = useCallback(() => {
-    const scrollTargetId = productId;
-    router.replace(ROUTES.pricing);
-
-    if (scrollTargetId) {
-      requestAnimationFrame(() => {
-        document
-          .getElementById(`product-${scrollTargetId}`)
-          ?.scrollIntoView({ behavior: "smooth", block: "start" });
-      });
-    }
-  }, [productId, router]);
+    window.history.replaceState(window.history.state, "", ROUTES.pricing);
+    router.replace(ROUTES.pricing, { scroll: false });
+  }, [router]);
 
   return (
     <>

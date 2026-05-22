@@ -27,7 +27,7 @@ export function ProductCta({ product, defaultPlanId }: ProductCtaProps) {
 
   return (
     <Button className="w-full sm:w-auto" asChild>
-      <Link href={buildOrderHref(product.id, defaultPlanId)}>
+      <Link href={buildOrderHref(product.id, defaultPlanId)} scroll={false}>
         {product.ctaLabel}
       </Link>
     </Button>

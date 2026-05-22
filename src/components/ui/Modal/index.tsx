@@ -7,6 +7,21 @@ import { cn } from "@/lib/utils";
 
 import type { ModalProps } from "./types";
 
+function lockBodyScroll() {
+  const scrollbarWidth =
+    window.innerWidth - document.documentElement.clientWidth;
+
+  document.documentElement.style.overflow = "hidden";
+  document.body.style.overflow = "hidden";
+  document.body.style.paddingRight = `${scrollbarWidth}px`;
+
+  return () => {
+    document.documentElement.style.overflow = "";
+    document.body.style.overflow = "";
+    document.body.style.paddingRight = "";
+  };
+}
+
 export function Modal({
   open,
   onClose,
@@ -24,11 +39,11 @@ export function Modal({
     };
 
     document.addEventListener("keydown", onKeyDown);
-    document.body.style.overflow = "hidden";
+    const unlockBodyScroll = lockBodyScroll();
 
     return () => {
       document.removeEventListener("keydown", onKeyDown);
-      document.body.style.overflow = "";
+      unlockBodyScroll();
     };
   }, [open, onClose]);
 

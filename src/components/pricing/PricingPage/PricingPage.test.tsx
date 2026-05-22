@@ -1,15 +1,21 @@
-import { render, screen, within } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
+import { fireEvent, render, screen, within } from "@testing-library/react";
+import { describe, expect, it, vi, beforeEach } from "vitest";
 
 import { PricingPage } from "./index";
 
+const replace = vi.fn();
+
 vi.mock("next/navigation", () => ({
   useRouter: () => ({
-    replace: vi.fn(),
+    replace,
   }),
 }));
 
 describe("PricingPage", () => {
+  beforeEach(() => {
+    replace.mockClear();
+  });
+
   it("renders product sections and payment notice", () => {
     render(<PricingPage />);
 
@@ -45,5 +51,17 @@ describe("PricingPage", () => {
     render(<PricingPage productId="invalid" planId="48h" />);
 
     expect(screen.queryByRole("dialog")).not.toBeInTheDocument();
+  });
+
+  it("closes modal without scrolling the page", () => {
+    render(<PricingPage productId="mini-dumpster" planId="48h" />);
+
+    fireEvent.click(
+      within(
+        screen.getByRole("dialog", { name: /finalizar pedido/i }),
+      ).getByRole("button", { name: /alterar seleção/i }),
+    );
+
+    expect(replace).toHaveBeenCalledWith("/pricing", { scroll: false });
   });
 });

@@ -22,7 +22,10 @@ export function ProductCombos({ product }: ProductCombosProps) {
               </p>
               {product.orderEnabled && (
                 <Button size="sm" className="w-full" asChild>
-                  <Link href={buildOrderHref(product.id, combo.id)}>
+                  <Link
+                    href={buildOrderHref(product.id, combo.id)}
+                    scroll={false}
+                  >
                     Escolher
                   </Link>
                 </Button>
