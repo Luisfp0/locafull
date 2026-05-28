@@ -1,14 +1,7 @@
-export type AbacatePixCustomer = {
-  name: string;
-  email: string;
-  cellphone: string;
-};
-
 export type CreatePixChargeInput = {
   amountCents: number;
   description: string;
   externalId: string;
-  customer: AbacatePixCustomer;
 };
 
 export type PixCharge = {

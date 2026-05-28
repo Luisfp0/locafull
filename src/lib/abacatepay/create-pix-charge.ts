@@ -19,11 +19,6 @@ export async function createPixCharge(
       description: input.description,
       expiresIn: 3600,
       externalId: input.externalId,
-      customer: {
-        name: input.customer.name,
-        email: input.customer.email,
-        cellphone: input.customer.cellphone,
-      },
       metadata: { orderId: input.externalId },
     },
   });

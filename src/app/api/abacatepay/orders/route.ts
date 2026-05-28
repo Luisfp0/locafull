@@ -87,7 +87,6 @@ export async function POST(request: Request) {
       amountCents: priceCents,
       description: lineItemName,
       externalId: orderId,
-      customer: { name: data.name, email: data.email, cellphone: data.phone },
     });
 
     if ("error" in result) {
