@@ -50,3 +50,17 @@ export function buildPricingLineItemName(
 
   return `${product.name} — ${planLabel}`;
 }
+
+export function findAbacateProductId(
+  productId: string,
+  planId: string,
+): string | undefined {
+  const product = findPricingProduct(productId);
+  if (!product) return undefined;
+
+  const plan = product.plans.find((item) => item.id === planId);
+  if (plan?.abacateProductId) return plan.abacateProductId;
+
+  const combo = product.combos?.find((item) => item.id === planId);
+  return combo?.abacateProductId;
+}
