@@ -12,27 +12,9 @@ import { cn } from "@/lib/utils";
 
 import { Field } from "./components/Field";
 import { ORDER_FORM_DEFAULT_VALUES } from "./constants";
-import type { OrderFormProps } from "./types";
+import type { OrderFormProps, OrdersApiResponse, PixState } from "./types";
 import { OrderPixPayment } from "../OrderPixPayment";
 import { PaymentMethodChoice } from "../PaymentMethodChoice";
-
-type PixState = {
-  orderId: string;
-  brCode: string;
-  brCodeBase64: string;
-  expiresAt: string | null;
-};
-
-type OrdersApiResponse =
-  | {
-      method: "pix";
-      orderId: string;
-      brCode: string;
-      brCodeBase64: string;
-      expiresAt: string | null;
-    }
-  | { method: "card"; orderId: string; url: string }
-  | { error: string };
 
 export function OrderForm({ productId, planId, onPaid }: OrderFormProps) {
   const [values, setValues] = useState<OrderFormFieldValues>(
