@@ -31,12 +31,13 @@ export function OrderForm({ productId, planId }: OrderFormProps) {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("/api/stripe/checkout", {
+      const response = await fetch("/api/abacatepay/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           productId,
           planId,
+          paymentMethod: "card",
           ...values,
         }),
       });
