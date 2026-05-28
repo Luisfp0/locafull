@@ -35,7 +35,23 @@ export async function confirmOrderFromWebhook(
   }
 
   if (!updated || updated.length === 0) {
-    // Já confirmado por outro webhook (idempotência) ou pedido inexistente.
+    const { data: existing } = await supabase
+      .from("orders")
+      .select("status")
+      .eq("id", parsed.orderId)
+      .maybeSingle();
+
+    if (!existing) {
+      console.warn("[orders] webhook for unknown order", {
+        orderId: parsed.orderId,
+      });
+    } else {
+      console.info("[orders] webhook ignored (already processed)", {
+        orderId: parsed.orderId,
+        status: existing.status,
+      });
+    }
+
     return { confirmed: false };
   }
 
