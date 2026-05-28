@@ -1,8 +1,10 @@
 # Locafull — Checkout Pix (Stripe)
 
 **Data:** 2026-05-19  
-**Status:** Implementado  
+**Status:** Substituído — ver `2026-05-28-abacatepay-checkout-design.md`  
 **Escopo:** Formulário em `/order`, Checkout Session Pix, webhook, páginas success/cancel — **sem catálogo de produtos na Stripe**
+
+> **Nota (2026-05-28):** Migração planejada para AbacatePay (Pix + cartão). Este documento permanece como histórico da implementação Stripe.
 
 ---
 
