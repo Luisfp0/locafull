@@ -14,7 +14,8 @@ export function parseConfirmedOrderFromWebhook(
   }
 
   const entity = event.data?.transparent ?? event.data?.checkout;
-  const orderId = entity?.externalId?.trim();
+  const orderId =
+    entity?.externalId?.trim() || entity?.metadata?.orderId?.trim();
   const paymentId = entity?.id?.trim();
 
   if (!orderId || !paymentId) {

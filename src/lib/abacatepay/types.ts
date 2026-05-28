@@ -26,9 +26,10 @@ export type CardCheckout = {
 
 type AbacateWebhookEntity = {
   id?: string;
-  externalId?: string;
+  externalId?: string | null;
   status?: string;
   amount?: number;
+  metadata?: { orderId?: string } | null;
 };
 
 export type AbacateWebhookEvent = {

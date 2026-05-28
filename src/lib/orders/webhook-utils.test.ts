@@ -31,6 +31,25 @@ describe("parseConfirmedOrderFromWebhook", () => {
     expect(result.paymentId).toBe("bill_1");
   });
 
+  it("usa metadata.orderId quando externalId vem nulo (Pix dev)", () => {
+    const result = parseConfirmedOrderFromWebhook({
+      event: "transparent.completed",
+      data: {
+        transparent: {
+          id: "pix_char_1",
+          externalId: null,
+          status: "PAID",
+          metadata: { orderId: "order-3" },
+        },
+      },
+    });
+
+    expect(result.success).toBe(true);
+    if (!result.success) return;
+    expect(result.orderId).toBe("order-3");
+    expect(result.paymentId).toBe("pix_char_1");
+  });
+
   it("ignora eventos não suportados", () => {
     const result = parseConfirmedOrderFromWebhook({
       event: "checkout.refunded",
