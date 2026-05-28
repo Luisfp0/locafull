@@ -2,19 +2,26 @@
 
 import { useState } from "react";
 
-import type { OrderFormFieldValues } from "@/components/order/types";
+import type {
+  OrderFormFieldValues,
+  OrderPaymentMethod,
+} from "@/components/order/types";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
 import { Field } from "./components/Field";
 import { ORDER_FORM_DEFAULT_VALUES } from "./constants";
-import type { OrderFormProps } from "./types";
+import type { OrderFormProps, OrdersApiResponse, PixState } from "./types";
+import { OrderPixPayment } from "../OrderPixPayment";
+import { PaymentMethodChoice } from "../PaymentMethodChoice";
 
-export function OrderForm({ productId, planId }: OrderFormProps) {
+export function OrderForm({ productId, planId, onPaid }: OrderFormProps) {
   const [values, setValues] = useState<OrderFormFieldValues>(
     ORDER_FORM_DEFAULT_VALUES,
   );
+  const [paymentMethod, setPaymentMethod] = useState<OrderPaymentMethod>("pix");
+  const [pix, setPix] = useState<PixState | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -31,29 +38,50 @@ export function OrderForm({ productId, planId }: OrderFormProps) {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("/api/stripe/checkout", {
+      const response = await fetch("/api/abacatepay/orders", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          productId,
-          planId,
-          ...values,
-        }),
+        body: JSON.stringify({ productId, planId, paymentMethod, ...values }),
       });
 
-      const data = (await response.json()) as { url?: string; error?: string };
+      const data = (await response.json()) as OrdersApiResponse;
 
-      if (!response.ok || !data.url) {
-        setError(data.error ?? "Não foi possível iniciar o pagamento.");
+      if (!response.ok || "error" in data) {
+        setError(
+          ("error" in data && data.error) ||
+            "Não foi possível iniciar o pagamento.",
+        );
         return;
       }
 
-      window.location.href = data.url;
+      if (data.method === "card") {
+        window.location.href = data.url;
+        return;
+      }
+
+      setPix({
+        orderId: data.orderId,
+        brCode: data.brCode,
+        brCodeBase64: data.brCodeBase64,
+        expiresAt: data.expiresAt,
+      });
     } catch {
       setError("Erro de conexão. Verifique sua internet e tente novamente.");
     } finally {
       setIsSubmitting(false);
     }
+  }
+
+  if (pix) {
+    return (
+      <OrderPixPayment
+        orderId={pix.orderId}
+        brCode={pix.brCode}
+        brCodeBase64={pix.brCodeBase64}
+        expiresAt={pix.expiresAt}
+        onConfirmed={() => onPaid(pix.orderId)}
+      />
+    );
   }
 
   return (
@@ -183,6 +211,12 @@ export function OrderForm({ productId, planId }: OrderFormProps) {
         </Field>
       </div>
 
+      <PaymentMethodChoice
+        value={paymentMethod}
+        onChange={setPaymentMethod}
+        disabled={isSubmitting}
+      />
+
       {error ? (
         <p className="text-destructive text-sm" role="alert">
           {error}
@@ -190,7 +224,11 @@ export function OrderForm({ productId, planId }: OrderFormProps) {
       ) : null}
 
       <Button type="submit" size="lg" disabled={isSubmitting}>
-        {isSubmitting ? "Redirecionando..." : "Pagar com cartão"}
+        {isSubmitting
+          ? "Processando..."
+          : paymentMethod === "pix"
+            ? "Pagar com Pix"
+            : "Pagar com cartão"}
       </Button>
     </form>
   );

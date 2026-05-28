@@ -63,6 +63,15 @@ Valores da marca Locafull; nomes alinhados ao `global.css` do admin.
 
 Para alterar WhatsApp, menu ou textos: `src/lib/constants.ts`.
 
+## Pagamentos
+
+Checkout online via **AbacatePay**:
+
+- **Pix** — checkout transparente, QR Code exibido em modal no próprio site.
+- **Cartão** — checkout hospedado pela AbacatePay.
+
+O pedido é criado como `pending` e confirmado pelo webhook (`/api/abacatepay/webhook?webhookSecret=...`).
+
 ## Variáveis de ambiente
 
 Copie `.env.example` para `.env.local` (desenvolvimento).
@@ -79,7 +88,7 @@ Pre-commit roda ESLint + Prettier nos arquivos staged (`lint-staged`).
 | --------------------------------------- | -------------------------------------- |
 | `/`                                     | Landing                                |
 | `/pricing`                              | Valores + checkout (`?product=&plan=`) |
-| `/checkout/success`, `/checkout/cancel` | Pós-pagamento Stripe                   |
+| `/checkout/success`, `/checkout/cancel` | Pós-pagamento AbacatePay               |
 | `/order`                                | Redireciona para `/pricing`            |
 
 ## Spec

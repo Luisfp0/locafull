@@ -3,6 +3,7 @@ export type PricingPlan = {
   label: string;
   priceCents: number;
   note?: string;
+  abacateProductId?: string;
 };
 
 export type PricingCombo = {
@@ -10,6 +11,7 @@ export type PricingCombo = {
   label: string;
   priceCents: number;
   description?: string;
+  abacateProductId?: string;
 };
 
 export type PricingProduct = {

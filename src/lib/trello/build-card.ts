@@ -7,6 +7,11 @@ import { formatBRL } from "@/lib/utils";
 
 import type { TrelloCardPayload } from "./types";
 
+const PAYMENT_METHOD_LABEL: Record<OrderInsertRow["payment_method"], string> = {
+  pix: "Pix",
+  card: "Cartão",
+};
+
 export function buildTrelloCardFromOrder(
   row: OrderInsertRow,
 ): TrelloCardPayload {
@@ -31,7 +36,8 @@ export function buildTrelloCardFromOrder(
       `Plano: ${planLabel ?? row.plan_id}`,
       `Valor pago: ${formatBRL(row.amount_cents)}${notesBlock}`,
       "",
-      `Pedido Stripe: ${row.stripe_session_id}`,
+      `Pagamento: ${PAYMENT_METHOD_LABEL[row.payment_method]}`,
+      `Pedido AbacatePay: ${row.payment_id ?? row.id}`,
     ].join("\n"),
   };
 }

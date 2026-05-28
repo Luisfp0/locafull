@@ -5,7 +5,10 @@ import type { OrderInsertRow } from "@/lib/orders/types";
 import { buildTrelloCardFromOrder } from "./build-card";
 
 const row: OrderInsertRow = {
-  stripe_session_id: "cs_test_123",
+  id: "11111111-1111-1111-1111-111111111111",
+  payment_provider: "abacatepay",
+  payment_method: "pix",
+  payment_id: "pix_char_abc123xyz",
   status: "paid",
   product_id: "mini-dumpster",
   plan_id: "48h",
@@ -34,6 +37,7 @@ describe("buildTrelloCardFromOrder", () => {
     expect(card.desc).toContain("Plano: Aluguel 48h");
     expect(card.desc).toMatch(/Valor pago: R\$\s?180,00/);
     expect(card.desc).toContain("Observações: Entregar de manhã");
-    expect(card.desc).toContain("cs_test_123");
+    expect(card.desc).toContain("pix_char_abc123xyz");
+    expect(card.desc).toContain("Pix");
   });
 });

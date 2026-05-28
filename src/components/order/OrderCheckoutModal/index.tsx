@@ -1,8 +1,13 @@
+"use client";
+
+import { useRouter } from "next/navigation";
+
 import {
   findPricingPlanLabel,
   findPricingPlanPrice,
   findPricingProduct,
 } from "@/components/pricing/utils";
+import { ROUTES } from "@/lib/routes";
 import { formatBRL } from "@/lib/utils";
 
 import { OrderActions } from "./components/OrderActions";
@@ -14,6 +19,7 @@ export function OrderCheckoutModal({
   planId,
   onClose,
 }: OrderCheckoutModalProps) {
+  const router = useRouter();
   const product = findPricingProduct(productId);
   const planLabel = findPricingPlanLabel(productId, planId);
   const priceCents = findPricingPlanPrice(productId, planId);
@@ -36,7 +42,13 @@ export function OrderCheckoutModal({
         </p>
       </div>
 
-      <OrderForm productId={productId} planId={planId} />
+      <OrderForm
+        productId={productId}
+        planId={planId}
+        onPaid={(orderId) =>
+          router.push(`${ROUTES.checkoutSuccess}?orderId=${orderId}`)
+        }
+      />
 
       <OrderActions onClose={onClose} />
     </div>

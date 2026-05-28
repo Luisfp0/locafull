@@ -1,6 +1,13 @@
+export type OrderPaymentMethod = "pix" | "card";
+
+export type OrderStatus = "pending" | "paid" | "expired" | "cancelled";
+
 export type OrderInsertRow = {
-  stripe_session_id: string;
-  status: "paid";
+  id: string;
+  payment_provider: "abacatepay";
+  payment_method: OrderPaymentMethod;
+  payment_id: string | null;
+  status: OrderStatus;
   product_id: string;
   plan_id: string;
   amount_cents: number;

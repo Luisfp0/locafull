@@ -17,3 +17,5 @@ export type OrderFormFieldValues = Omit<
   OrderCheckoutPayload,
   "productId" | "planId"
 >;
+
+export type OrderPaymentMethod = "pix" | "card";
