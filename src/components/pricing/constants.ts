@@ -12,7 +12,7 @@ export const PRICING_PRODUCTS: PricingProduct[] = [
         id: "48h",
         label: "Aluguel 48h",
         priceCents: 18000,
-        abacateProductId: "prod_SUBSTITUIR_MINI_48H",
+        abacateProductId: "prod_6G4b3HKmTCwgtnKDL4JDJnsf",
       },
       {
         id: "extra-day",
@@ -47,7 +47,7 @@ export const PRICING_PRODUCTS: PricingProduct[] = [
         id: "5-days",
         label: "Aluguel por 5 dias",
         priceCents: 13000,
-        abacateProductId: "prod_SUBSTITUIR_TAMBOR_5D",
+        abacateProductId: "prod_SrsHGMNteAWbzgJ5Kq4G3crJ",
       },
       {
         id: "extra-day",
@@ -61,19 +61,19 @@ export const PRICING_PRODUCTS: PricingProduct[] = [
         id: "combo-1",
         label: "1 tambor",
         priceCents: 15000,
-        abacateProductId: "prod_SUBSTITUIR_COMBO_1",
+        abacateProductId: "prod_tmm4w26WqJCQ4HcgsYLJsfNM",
       },
       {
         id: "combo-2",
         label: "2 tambores",
         priceCents: 20000,
-        abacateProductId: "prod_SUBSTITUIR_COMBO_2",
+        abacateProductId: "prod_nEnRaSq6Fb3h2M1W4NeHWw3H",
       },
       {
         id: "combo-3",
         label: "3 tambores",
         priceCents: 25000,
-        abacateProductId: "prod_SUBSTITUIR_COMBO_3",
+        abacateProductId: "prod_CajGWYTtjgeMs4hMU2dkKRLX",
       },
     ],
     rules: [
