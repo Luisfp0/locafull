@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 import type {
   OrderFormFieldValues,
@@ -32,6 +32,10 @@ export function OrderForm({ productId, planId, onPaid }: OrderFormProps) {
   ) {
     setValues((current) => ({ ...current, [key]: value }));
   }
+
+  const setScheduledDate = useCallback((scheduledDate: string) => {
+    setValues((current) => ({ ...current, scheduledDate }));
+  }, []);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -213,9 +217,7 @@ export function OrderForm({ productId, planId, onPaid }: OrderFormProps) {
 
         <DeliveryDateField
           value={values.scheduledDate}
-          onChange={(scheduledDate) =>
-            updateField("scheduledDate", scheduledDate)
-          }
+          onChange={setScheduledDate}
           disabled={isSubmitting}
         />
       </div>

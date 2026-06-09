@@ -5,64 +5,46 @@ import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
 import { Field } from "../Field";
-import type {
-  DeliveryDateFieldProps,
-  DeliveryDateOption,
-  DeliveryDatesApiResponse,
-} from "./types";
+import type { DeliveryDateFieldProps, DeliveryDateOption } from "./types";
+import { getCachedDeliveryDateOptions, loadDeliveryDateOptions } from "./utils";
 
 export function DeliveryDateField({
   value,
   onChange,
   disabled = false,
 }: DeliveryDateFieldProps) {
-  const [options, setOptions] = useState<DeliveryDateOption[]>([]);
+  const cached = getCachedDeliveryDateOptions();
+  const [options, setOptions] = useState<DeliveryDateOption[]>(cached ?? []);
   const [status, setStatus] = useState<"loading" | "ready" | "error">(
-    "loading",
+    cached ? "ready" : "loading",
   );
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const hasSelectedInitial = useRef(false);
+  const skipAutoSelect = useRef(value !== "");
 
   useEffect(() => {
     let cancelled = false;
 
-    async function loadDates() {
-      setStatus("loading");
-      setErrorMessage(null);
-
-      try {
-        const response = await fetch("/api/availability/delivery-dates");
-        const data = (await response.json()) as DeliveryDatesApiResponse;
-
-        if (cancelled) {
-          return;
-        }
-
-        if (!response.ok || "error" in data) {
-          setStatus("error");
-          setErrorMessage(
-            ("error" in data && data.error) ||
-              "Não foi possível carregar as datas disponíveis.",
-          );
-          return;
-        }
-
-        setOptions(data.dates);
-        setStatus("ready");
-
-        if (!hasSelectedInitial.current && data.dates[0]) {
-          hasSelectedInitial.current = true;
-          onChange(data.dates[0].date);
-        }
-      } catch {
-        if (!cancelled) {
-          setStatus("error");
-          setErrorMessage("Erro de conexão ao carregar datas disponíveis.");
-        }
+    void loadDeliveryDateOptions().then((result) => {
+      if (cancelled) {
+        return;
       }
-    }
 
-    void loadDates();
+      if ("error" in result) {
+        if (!getCachedDeliveryDateOptions()) {
+          setStatus("error");
+          setErrorMessage(result.error);
+        }
+        return;
+      }
+
+      setOptions(result);
+      setStatus("ready");
+
+      if (!skipAutoSelect.current && result[0]) {
+        skipAutoSelect.current = true;
+        onChange(result[0].date);
+      }
+    });
 
     return () => {
       cancelled = true;
