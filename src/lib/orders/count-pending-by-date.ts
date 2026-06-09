@@ -1,10 +1,14 @@
 import { getSupabaseAdmin } from "@/lib/supabase";
 
+export type PendingCountsResult =
+  | { success: true; counts: Record<string, number> }
+  | { success: false; error: string };
+
 export async function countPendingOrdersByDates(
   dates: string[],
-): Promise<Record<string, number> | { error: string }> {
+): Promise<PendingCountsResult> {
   if (dates.length === 0) {
-    return {};
+    return { success: true, counts: {} };
   }
 
   const supabase = getSupabaseAdmin();
@@ -16,7 +20,10 @@ export async function countPendingOrdersByDates(
 
   if (error) {
     console.error("[orders] pending count failed", error);
-    return { error: "Não foi possível consultar reservas." };
+    return {
+      success: false,
+      error: "Não foi possível consultar reservas.",
+    };
   }
 
   const counts: Record<string, number> = {};
@@ -31,5 +38,5 @@ export async function countPendingOrdersByDates(
     counts[date] = (counts[date] ?? 0) + 1;
   }
 
-  return counts;
+  return { success: true, counts };
 }

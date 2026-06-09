@@ -41,8 +41,8 @@ export async function getDeliveryDateAvailability(): Promise<
 
   const pendingCounts = await countPendingOrdersByDates(candidateDates);
 
-  if ("error" in pendingCounts) {
-    return pendingCounts;
+  if (!pendingCounts.success) {
+    return { error: pendingCounts.error };
   }
 
   const occupancyByDate = Object.fromEntries(
@@ -50,7 +50,7 @@ export async function getDeliveryDateAvailability(): Promise<
       date,
       {
         trelloCards: trelloCounts[date] ?? 0,
-        pendingOrders: pendingCounts[date] ?? 0,
+        pendingOrders: pendingCounts.counts[date] ?? 0,
       },
     ]),
   );
@@ -72,7 +72,7 @@ export async function getSlotsRemainingForDate(
   const availability = await getDeliveryDateAvailability();
 
   if ("error" in availability) {
-    return availability;
+    return { error: availability.error };
   }
 
   const match = availability.dates.find((entry) => entry.date === isoDate);
