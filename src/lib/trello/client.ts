@@ -7,11 +7,55 @@ type TrelloList = {
   name: string;
 };
 
+const boardIdCache = new Map<string, string>();
+
 function buildAuthParams(config: Pick<TrelloConfig, "apiKey" | "token">) {
   return new URLSearchParams({
     key: config.apiKey,
     token: config.token,
   });
+}
+
+export async function resolveTrelloBoardId(
+  boardIdOrShortLink: string,
+  config: Pick<TrelloConfig, "apiKey" | "token">,
+): Promise<string | { error: string }> {
+  const cached = boardIdCache.get(boardIdOrShortLink);
+
+  if (cached) {
+    return cached;
+  }
+
+  if (/^[a-f0-9]{24}$/i.test(boardIdOrShortLink)) {
+    boardIdCache.set(boardIdOrShortLink, boardIdOrShortLink);
+    return boardIdOrShortLink;
+  }
+
+  const params = buildAuthParams(config);
+  params.set("fields", "id");
+
+  try {
+    const response = await fetch(
+      `https://api.trello.com/1/boards/${boardIdOrShortLink}?${params}`,
+    );
+
+    if (!response.ok) {
+      return { error: `Trello API ${response.status}` };
+    }
+
+    const data = (await response.json()) as { id?: string };
+
+    if (!data.id) {
+      return { error: "Trello API não retornou id do board." };
+    }
+
+    boardIdCache.set(boardIdOrShortLink, data.id);
+    return data.id;
+  } catch (error) {
+    const message =
+      error instanceof Error ? error.message : "Erro de rede ao chamar Trello.";
+    return { error: message };
+  }
 }
 
 export async function fetchTrelloLists(
@@ -67,8 +111,14 @@ export async function createTrelloList(
   name: string,
   config: Pick<TrelloConfig, "apiKey" | "token">,
 ): Promise<{ id: string } | { error: string }> {
+  const resolvedBoardId = await resolveTrelloBoardId(boardId, config);
+
+  if (typeof resolvedBoardId === "object") {
+    return resolvedBoardId;
+  }
+
   const params = buildAuthParams(config);
-  params.set("idBoard", boardId);
+  params.set("idBoard", resolvedBoardId);
   params.set("name", name);
   params.set("pos", "bottom");
 

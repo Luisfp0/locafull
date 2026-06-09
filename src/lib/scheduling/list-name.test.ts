@@ -16,6 +16,12 @@ describe("parseEntregarListDate", () => {
     );
   });
 
+  it("parses ENTREGAR list title without dash before date", () => {
+    expect(parseEntregarListDate("ENTREGAR - SEXTA-FEIRA 12/06", 2026)).toBe(
+      "2026-06-12",
+    );
+  });
+
   it("ignores RETIRAR lists", () => {
     expect(parseEntregarListDate("RETIRAR - TERÇA-FEIRA - 09/06", 2026)).toBe(
       null,

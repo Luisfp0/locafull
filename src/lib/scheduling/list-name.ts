@@ -8,7 +8,7 @@ const WEEKDAY_PT = [
   "SÁBADO",
 ] as const;
 
-const ENTREGAR_LIST_PATTERN = /^ENTREGAR\s*-\s*.+\s*-\s*(\d{2})\/(\d{2})$/i;
+const ENTREGAR_LIST_PATTERN = /^ENTREGAR\s*-+\s*.+?(\d{2})\/(\d{2})\s*$/i;
 
 function pad2(value: number): string {
   return String(value).padStart(2, "0");
