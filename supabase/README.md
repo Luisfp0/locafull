@@ -1,10 +1,12 @@
 # Supabase — Locafull
 
-## 1. Criar tabela `orders`
+## 1. Migrações
 
-No painel do projeto **locafull**, abra **SQL Editor** e execute o arquivo:
+No painel do projeto **locafull**, abra **SQL Editor** e execute, nesta ordem:
 
-`migrations/20260520120000_create_orders.sql`
+1. `migrations/20260520120000_create_orders.sql`
+2. `migrations/20260528120000_orders_abacatepay.sql` (colunas genéricas de pagamento: `payment_provider`, `payment_method`, `payment_id`)
+3. `migrations/20260603120000_orders_scheduled_date.sql` (`scheduled_date` para agendamento de entrega)
 
 ## 2. Variáveis de ambiente
 
@@ -17,18 +19,14 @@ Em **Settings → API**:
 
 A publishable key (`sb_publishable_…`) não é usada neste fluxo (webhook no servidor).
 
-## 3. Webhook Stripe
+## 3. Webhook AbacatePay
 
-**Local:**
+O pedido é confirmado quando a AbacatePay chama:
 
-```bash
-stripe listen --forward-to localhost:3000/api/stripe/webhook
-```
+`https://locafull.vercel.app/api/abacatepay/webhook?webhookSecret=...`
 
-Copie o `whsec_…` para `STRIPE_WEBHOOK_SECRET` no `.env.local`.
-
-**Produção (Vercel):** endpoint `https://locafull.vercel.app/api/stripe/webhook` — ver `docs/deploy-producao.md`.
+Detalhes de configuração: [`docs/deploy-producao.md`](../docs/deploy-producao.md).
 
 ## 4. Conferir pedido
 
-Após um pagamento de teste, veja a tabela **orders** em **Table Editor** no Supabase.
+Após um pagamento, veja a tabela **orders** em **Table Editor** no Supabase (`status = 'paid'` após webhook).

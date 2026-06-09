@@ -1,10 +1,25 @@
 import { describe, expect, it } from "vitest";
 
+import { formatIsoDateLocal } from "@/lib/scheduling/list-name";
+
 import { formatDeliveryAddress, validateOrderCheckoutPayload } from "./utils";
+
+function nextDeliveryDateIso(): string {
+  const date = new Date();
+  date.setHours(12, 0, 0, 0);
+  date.setDate(date.getDate() + 1);
+
+  while (date.getDay() === 0) {
+    date.setDate(date.getDate() + 1);
+  }
+
+  return formatIsoDateLocal(date);
+}
 
 const validPayload = {
   productId: "mini-dumpster",
   planId: "48h",
+  scheduledDate: nextDeliveryDateIso(),
   name: "Maria Silva",
   email: "maria@example.com",
   phone: "(62) 99999-8888",
@@ -63,6 +78,18 @@ describe("validateOrderCheckoutPayload", () => {
     expect(result).toEqual({
       success: false,
       error: "Informe um CEP válido (8 dígitos).",
+    });
+  });
+
+  it("rejects missing scheduled date", () => {
+    const result = validateOrderCheckoutPayload({
+      ...validPayload,
+      scheduledDate: "",
+    });
+
+    expect(result).toEqual({
+      success: false,
+      error: "Selecione uma data de entrega válida.",
     });
   });
 });

@@ -34,6 +34,7 @@ export async function insertPendingOrder(input: {
     city: payload.city,
     notes: payload.notes ?? null,
     delivery_address: formatDeliveryAddress(payload),
+    scheduled_date: payload.scheduledDate,
   };
 
   const supabase = getSupabaseAdmin();

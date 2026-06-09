@@ -1,6 +1,7 @@
 export type OrderCheckoutPayload = {
   productId: string;
   planId: string;
+  scheduledDate: string;
   name: string;
   email: string;
   phone: string;

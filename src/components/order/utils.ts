@@ -1,4 +1,8 @@
 import type { OrderCheckoutPayload } from "./types";
+import {
+  parseScheduledDate,
+  validateScheduledDateCandidate,
+} from "@/lib/scheduling/validate-scheduled-date";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -29,6 +33,7 @@ export function validateOrderCheckoutPayload(
   const neighborhood = String(input.neighborhood ?? "").trim();
   const city = String(input.city ?? "").trim();
   const notes = String(input.notes ?? "").trim();
+  const scheduledDate = parseScheduledDate(input.scheduledDate);
 
   if (!productId || !planId) {
     return { success: false, error: "Produto ou plano inválido." };
@@ -54,11 +59,23 @@ export function validateOrderCheckoutPayload(
     return { success: false, error: "Preencha o endereço de entrega." };
   }
 
+  if (!scheduledDate) {
+    return { success: false, error: "Selecione uma data de entrega válida." };
+  }
+
+  if (!validateScheduledDateCandidate(scheduledDate)) {
+    return {
+      success: false,
+      error: "A data de entrega selecionada não está disponível.",
+    };
+  }
+
   return {
     success: true,
     data: {
       productId,
       planId,
+      scheduledDate,
       name,
       email,
       phone,

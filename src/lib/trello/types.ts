@@ -3,8 +3,10 @@ import type { OrderInsertRow } from "@/lib/orders/types";
 export type TrelloConfig = {
   apiKey: string;
   token: string;
-  listId: string;
+  boardId: string;
   labelIdEntregar: string;
+  maxDeliveriesPerDay: number;
+  listIdFallback?: string;
 };
 
 export type TrelloCardPayload = {

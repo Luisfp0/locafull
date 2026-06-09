@@ -14,6 +14,7 @@ import { createPixCharge } from "@/lib/abacatepay/create-pix-charge";
 import { SITE_URL } from "@/lib/constants";
 import { insertPendingOrder } from "@/lib/orders/insert-pending-order";
 import { ROUTES } from "@/lib/routes";
+import { getSlotsRemainingForDate } from "@/lib/scheduling/get-delivery-date-availability";
 
 export const runtime = "nodejs";
 
@@ -65,6 +66,19 @@ export async function POST(request: Request) {
   if (!priceCents || !lineItemName) {
     return NextResponse.json(
       { error: "Plano ou preço inválido para este equipamento." },
+      { status: 400 },
+    );
+  }
+
+  const slotsRemaining = await getSlotsRemainingForDate(data.scheduledDate);
+
+  if (typeof slotsRemaining === "object") {
+    return NextResponse.json({ error: slotsRemaining.error }, { status: 502 });
+  }
+
+  if (slotsRemaining < 1) {
+    return NextResponse.json(
+      { error: "Data indisponível, escolha outra." },
       { status: 400 },
     );
   }

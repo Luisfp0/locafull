@@ -24,6 +24,7 @@ const row: OrderInsertRow = {
   city: "Goiânia",
   notes: "Entregar de manhã",
   delivery_address: "Rua A, 10 · Jardim América · Goiânia",
+  scheduled_date: "2026-06-09",
 };
 
 describe("buildTrelloCardFromOrder", () => {
@@ -37,6 +38,7 @@ describe("buildTrelloCardFromOrder", () => {
     expect(card.desc).toContain("Plano: Aluguel 48h");
     expect(card.desc).toMatch(/Valor pago: R\$\s?180,00/);
     expect(card.desc).toContain("Observações: Entregar de manhã");
+    expect(card.desc).toContain("Data de entrega:");
     expect(card.desc).toContain("pix_char_abc123xyz");
     expect(card.desc).toContain("Pix");
   });

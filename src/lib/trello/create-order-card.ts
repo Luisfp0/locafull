@@ -2,6 +2,7 @@ import type { OrderInsertRow } from "@/lib/orders/types";
 
 import { buildTrelloCardFromOrder } from "./build-card";
 import { getTrelloConfig } from "./config";
+import { findOrCreateEntregarList } from "./find-or-create-entregar-list";
 import type { CreateTrelloCardResult } from "./types";
 
 export async function createTrelloCardForOrder(
@@ -16,10 +17,26 @@ export async function createTrelloCardForOrder(
 
   const { name, desc } = buildTrelloCardFromOrder(row);
 
+  let listId = config.listIdFallback;
+
+  if (row.scheduled_date) {
+    const resolved = await findOrCreateEntregarList(row.scheduled_date, config);
+
+    if ("error" in resolved) {
+      return { error: resolved.error };
+    }
+
+    listId = resolved.listId;
+  }
+
+  if (!listId) {
+    return { error: "Lista de destino do Trello não configurada." };
+  }
+
   const params = new URLSearchParams({
     key: config.apiKey,
     token: config.token,
-    idList: config.listId,
+    idList: listId,
     name,
     desc,
     idLabels: config.labelIdEntregar,

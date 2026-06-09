@@ -22,4 +22,5 @@ export type OrderInsertRow = {
   city: string;
   notes: string | null;
   delivery_address: string;
+  scheduled_date: string | null;
 };

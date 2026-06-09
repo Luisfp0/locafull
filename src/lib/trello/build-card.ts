@@ -4,6 +4,7 @@ import {
 } from "@/components/pricing/utils";
 import type { OrderInsertRow } from "@/lib/orders/types";
 import { formatBRL } from "@/lib/utils";
+import { parseIsoDateLocal } from "@/lib/scheduling/list-name";
 
 import type { TrelloCardPayload } from "./types";
 
@@ -21,6 +22,14 @@ export function buildTrelloCardFromOrder(
 
   const complement = row.complement ? ` — ${row.complement}` : "";
   const notesBlock = row.notes ? `\n\nObservações: ${row.notes}` : "";
+  const deliveryDateBlock = row.scheduled_date
+    ? `\n\nData de entrega: ${new Intl.DateTimeFormat("pt-BR", {
+        weekday: "long",
+        day: "2-digit",
+        month: "2-digit",
+        year: "numeric",
+      }).format(parseIsoDateLocal(row.scheduled_date))}`
+    : "";
 
   return {
     name: `${productName} — ${row.neighborhood}`,
@@ -34,7 +43,7 @@ export function buildTrelloCardFromOrder(
       `CEP: ${row.postal_code}`,
       "",
       `Plano: ${planLabel ?? row.plan_id}`,
-      `Valor pago: ${formatBRL(row.amount_cents)}${notesBlock}`,
+      `Valor pago: ${formatBRL(row.amount_cents)}${notesBlock}${deliveryDateBlock}`,
       "",
       `Pagamento: ${PAYMENT_METHOD_LABEL[row.payment_method]}`,
       `Pedido AbacatePay: ${row.payment_id ?? row.id}`,

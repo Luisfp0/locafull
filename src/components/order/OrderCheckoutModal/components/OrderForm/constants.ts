@@ -1,6 +1,7 @@
 import type { OrderFormFieldValues } from "@/components/order/types";
 
 export const ORDER_FORM_DEFAULT_VALUES: OrderFormFieldValues = {
+  scheduledDate: "",
   name: "",
   email: "",
   phone: "",

@@ -11,6 +11,7 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
 import { Field } from "./components/Field";
+import { DeliveryDateField } from "./components/DeliveryDateField";
 import { ORDER_FORM_DEFAULT_VALUES } from "./constants";
 import type { OrderFormProps, OrdersApiResponse, PixState } from "./types";
 import { OrderPixPayment } from "../OrderPixPayment";
@@ -209,6 +210,14 @@ export function OrderForm({ productId, planId, onPaid }: OrderFormProps) {
             placeholder="Horário preferencial, referência do local, etc."
           />
         </Field>
+
+        <DeliveryDateField
+          value={values.scheduledDate}
+          onChange={(scheduledDate) =>
+            updateField("scheduledDate", scheduledDate)
+          }
+          disabled={isSubmitting}
+        />
       </div>
 
       <PaymentMethodChoice
@@ -223,7 +232,11 @@ export function OrderForm({ productId, planId, onPaid }: OrderFormProps) {
         </p>
       ) : null}
 
-      <Button type="submit" size="lg" disabled={isSubmitting}>
+      <Button
+        type="submit"
+        size="lg"
+        disabled={isSubmitting || !values.scheduledDate}
+      >
         {isSubmitting
           ? "Processando..."
           : paymentMethod === "pix"
