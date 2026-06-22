@@ -2,6 +2,7 @@
 
 import { X } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 import { InstagramIcon } from "@/components/icons/InstagramIcon";
@@ -17,6 +18,15 @@ import { buildWaLink, cn } from "@/lib/utils";
 import type { MobileMenuProps } from "./types";
 
 export function MobileMenu({ open, onClose }: MobileMenuProps) {
+  const pathname = usePathname();
+
+  function handleNavClick(href: string) {
+    if (pathname === href) {
+      window.scrollTo(0, 0);
+    }
+    onClose();
+  }
+
   useEffect(() => {
     if (!open) return;
 
@@ -71,7 +81,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
             <Link
               key={link.href}
               href={link.href}
-              onClick={onClose}
+              onClick={() => handleNavClick(link.href)}
               className="text-primary rounded-lg px-3 py-3 text-base font-medium hover:bg-gray-50"
             >
               {link.label}

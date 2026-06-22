@@ -2,6 +2,7 @@
 
 import { Menu } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 
 import { InstagramIcon } from "@/components/icons/InstagramIcon";
@@ -21,6 +22,13 @@ import type { HeaderProps } from "./types";
 
 export function Header({ className }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  function scrollToTopIfSameRoute(href: string) {
+    if (pathname === href) {
+      window.scrollTo(0, 0);
+    }
+  }
 
   return (
     <>
@@ -34,6 +42,7 @@ export function Header({ className }: HeaderProps) {
               <Link
                 key={link.href}
                 href={link.href}
+                onClick={() => scrollToTopIfSameRoute(link.href)}
                 className="text-primary hover:text-warning text-sm font-medium transition-colors"
               >
                 {link.label}

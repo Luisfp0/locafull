@@ -7,7 +7,7 @@ export function PaymentNotice({ className }: PaymentNoticeProps) {
       role="note"
     >
       <p>
-        <span className="font-semibold">Pagamento:</span> cartão.
+        <span className="font-semibold">Pagamento:</span> cartão ou pix.
       </p>
       <p>Dinheiro consulte um atendente.</p>
     </div>

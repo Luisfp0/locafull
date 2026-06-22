@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 
 import { OrderCheckoutModal } from "@/components/order/OrderCheckoutModal";
 import {
@@ -24,6 +24,11 @@ export function PricingPageClient({
   const priceCents =
     productId && planId ? findPricingPlanPrice(productId, planId) : undefined;
   const isOpen = Boolean(product && planId && priceCents !== undefined);
+
+  useEffect(() => {
+    if (productId || planId) return;
+    window.scrollTo(0, 0);
+  }, [productId, planId]);
 
   const handleClose = useCallback(() => {
     window.history.replaceState(window.history.state, "", ROUTES.pricing);
