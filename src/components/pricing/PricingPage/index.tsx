@@ -14,7 +14,7 @@ export function PricingPage({
 }: PricingPageProps) {
   return (
     <PricingPageClient productId={productId} planId={planId}>
-      <section className="bg-gray-50 sm:pb-6">
+      <section className="bg-gray-50 pb-6">
         <div
           className={`mx-auto flex max-w-7xl flex-col gap-16 px-4 sm:px-6 lg:px-8 ${className ?? ""}`}
         >
