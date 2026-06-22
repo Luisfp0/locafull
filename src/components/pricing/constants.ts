@@ -11,7 +11,7 @@ export const PRICING_PRODUCTS: PricingProduct[] = [
       {
         id: "48h",
         label: "Aluguel 48h",
-        priceCents: 100,
+        priceCents: 1000,
         abacateProductId: "prod_SGcYj0qjrJG4cCYDZStTdbm1",
       },
       {
@@ -84,19 +84,5 @@ export const PRICING_PRODUCTS: PricingProduct[] = [
     ],
     ctaLabel: "Solicitar tambor",
     orderEnabled: true,
-  },
-  {
-    id: "barrel",
-    name: "Barril",
-    imageSrc: "/images/barril.jpeg",
-    imageAlt: "Barril Locafull para resíduos de obra",
-    capacity: "Consulte capacidade e valores",
-    plans: [],
-    rules: [
-      "Valores e disponibilidade sob consulta.",
-      "Entre em contato pelo WhatsApp para orçamento.",
-    ],
-    ctaLabel: "Consultar no WhatsApp",
-    orderEnabled: false,
   },
 ];
