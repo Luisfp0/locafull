@@ -3,14 +3,14 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ROUTES } from "@/lib/constants";
 
-import { WhatWeDoCardImage } from "./components/WhatWeDoCardImage";
-import { WHAT_WE_DO_DESCRIPTION, WHAT_WE_DO_ITEMS } from "./constants";
+import { WHAT_WE_DO_ITEMS } from "./constants";
 import type { WhatWeDoProps } from "./types";
+import Image from "next/image";
 
 export function WhatWeDo({ className }: WhatWeDoProps) {
   return (
     <section
-      className={`from-primary via-primary-light to-primary bg-gradient-to-br py-16 sm:py-20 ${className ?? ""}`}
+      className={`from-primary via-primary-light to-primary bg-linear-to-br py-16 sm:py-20 ${className ?? ""}`}
       aria-labelledby="what-we-do-heading"
     >
       <div className="mx-auto flex max-w-7xl flex-col gap-10 px-4 sm:px-6 lg:px-8">
@@ -23,22 +23,31 @@ export function WhatWeDo({ className }: WhatWeDoProps) {
           </h2>
         </header>
 
-        <ul className="grid list-none gap-6 p-0 md:grid-cols-3 md:gap-8">
+        <div className="flex justify-around">
           {WHAT_WE_DO_ITEMS.map((item) => (
-            <li key={item.title}>
-              <article className="shadow-brand overflow-hidden rounded-2xl">
-                <WhatWeDoCardImage item={item} />
-                <h3 className="text-primary bg-white px-3 py-4 text-center text-sm font-bold sm:text-base">
+            <div className="relative flex" key={item.title}>
+              <Image
+                className="rounded-lg"
+                src={item.imageSrc}
+                alt={item.imageAlt}
+                width={400}
+                height={300}
+              />
+              <div className="absolute bottom-0 w-full rounded-b-lg bg-white py-4">
+                <h3 className="text-primary text-md text-center font-bold">
                   {item.title}
                 </h3>
-              </article>
-            </li>
+              </div>
+            </div>
           ))}
-        </ul>
+        </div>
 
         <div className="flex flex-col items-center gap-8">
           <p className="mx-auto max-w-2xl text-center text-base leading-relaxed text-gray-100">
-            {WHAT_WE_DO_DESCRIPTION}
+            Somos especialistas em locação de mini caçambas, tambores e barris
+            para obras, reformas e limpeza de terrenos em Goiânia e região.
+            Fazemos a entrega e a retirada no local, com agilidade e
+            equipamentos ideais para espaços menores.
           </p>
           <div className="flex justify-center">
             <Button size="lg" asChild>
