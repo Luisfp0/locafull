@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
-import { ROUTES, SITE_TAGLINE, WHATSAPP_NUMBER } from "@/lib/constants";
+import { ROUTES, WHATSAPP_NUMBER } from "@/lib/constants";
 import { buildWaLink } from "@/lib/utils";
 
 import type { HeroProps } from "./types";
@@ -15,12 +15,12 @@ export function Hero({ className }: HeroProps) {
       className={`from-primary via-primary-light to-warning relative overflow-hidden bg-gradient-to-br text-white ${className ?? ""}`}
     >
       <div className="mx-auto grid max-w-7xl items-center gap-8 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-12 lg:px-8 lg:py-24">
-        <div className="flex flex-col gap-8">
+        <div className="flex flex-col items-center gap-8 text-center lg:items-start lg:text-left">
           <div className="flex flex-col gap-4">
             <p className="text-alert-3 text-sm font-medium tracking-widest uppercase">
-              {SITE_TAGLINE}
+              {"Agilidade que movimenta sua obra"}
             </p>
-            <h1 className="text-headline-4 sm:text-headline-3 leading-tight font-bold text-white">
+            <h1 className="text-headline-4 sm:text-headline-3 leading-tight font-bold">
               Locação de mini caçambas para sua obra em Goiânia e região
             </h1>
             <p className="max-w-xl text-lg text-gray-100">
@@ -28,7 +28,7 @@ export function Hero({ className }: HeroProps) {
               terrenos. Tambores e barris para resíduos da sua construção.
             </p>
           </div>
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap justify-center gap-4 lg:justify-start">
             <Button
               size="lg"
               asChild
@@ -52,7 +52,7 @@ export function Hero({ className }: HeroProps) {
             </Button>
           </div>
         </div>
-        <div className="relative flex justify-center lg:justify-end">
+        <div className="flex justify-center lg:justify-end">
           <div className="shadow-brand relative aspect-[4/3] w-full max-w-lg overflow-hidden rounded-2xl border border-white/20">
             <Image
               src={HERO_EQUIPMENT_SRC}

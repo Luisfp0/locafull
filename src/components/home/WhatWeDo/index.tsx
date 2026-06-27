@@ -15,15 +15,12 @@ export function WhatWeDo({ className }: WhatWeDoProps) {
     >
       <div className="mx-auto flex max-w-7xl flex-col gap-10 px-4 sm:px-6 lg:px-8">
         <header className="text-center">
-          <h2
-            id="what-we-do-heading"
-            className="text-headline-4 sm:text-headline-3 font-bold text-white"
-          >
+          <h2 className="text-headline-4 sm:text-headline-3 font-bold text-white">
             O que nós fazemos
           </h2>
         </header>
 
-        <div className="flex justify-around">
+        <div className="flex justify-around gap-4 md:gap-0">
           {WHAT_WE_DO_ITEMS.map((item) => (
             <div className="relative flex" key={item.title}>
               <Image

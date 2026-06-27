@@ -4,7 +4,6 @@ import { Inter, Plus_Jakarta_Sans } from "next/font/google";
 import {
   SITE_DESCRIPTION,
   SITE_NAME,
-  SITE_TAGLINE,
   SITE_URL,
   WHATSAPP_DISPLAY,
 } from "@/lib/constants";
@@ -50,7 +49,7 @@ const localBusinessJsonLd = {
   "@type": "LocalBusiness",
   name: SITE_NAME,
   description: SITE_DESCRIPTION,
-  slogan: SITE_TAGLINE,
+  slogan: "Agilidade que movimenta sua obra",
   telephone: WHATSAPP_DISPLAY,
   areaServed: {
     "@type": "City",

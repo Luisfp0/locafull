@@ -3,7 +3,6 @@ import { ROUTES } from "@/lib/routes";
 export { ROUTES } from "@/lib/routes";
 
 export const SITE_NAME = "Locafull";
-export const SITE_TAGLINE = "Agilidade que movimenta sua obra";
 export const SITE_DESCRIPTION =
   "Locação de mini caçambas, tambores e barris para sua obra em Goiânia e região.";
 
