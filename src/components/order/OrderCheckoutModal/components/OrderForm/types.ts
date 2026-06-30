@@ -1,6 +1,7 @@
 export type OrderFormProps = {
   productId: string;
   planId: string;
+  cardPaymentEnabled: boolean;
   onPaid: (orderId: string) => void;
 };
 

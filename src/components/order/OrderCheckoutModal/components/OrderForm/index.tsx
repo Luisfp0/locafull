@@ -17,7 +17,12 @@ import type { OrderFormProps, OrdersApiResponse, PixState } from "./types";
 import { OrderPixPayment } from "../OrderPixPayment";
 import { PaymentMethodChoice } from "../PaymentMethodChoice";
 
-export function OrderForm({ productId, planId, onPaid }: OrderFormProps) {
+export function OrderForm({
+  productId,
+  planId,
+  cardPaymentEnabled,
+  onPaid,
+}: OrderFormProps) {
   const [values, setValues] = useState<OrderFormFieldValues>(
     ORDER_FORM_DEFAULT_VALUES,
   );
@@ -222,11 +227,18 @@ export function OrderForm({ productId, planId, onPaid }: OrderFormProps) {
         />
       </div>
 
-      <PaymentMethodChoice
-        value={paymentMethod}
-        onChange={setPaymentMethod}
-        disabled={isSubmitting}
-      />
+      {cardPaymentEnabled ? (
+        <PaymentMethodChoice
+          value={paymentMethod}
+          onChange={setPaymentMethod}
+          disabled={isSubmitting}
+        />
+      ) : (
+        <p className="text-sm text-gray-600">
+          Pagamento apenas via <strong>Pix</strong> neste pedido. Tambores não
+          aceitam cartão de crédito.
+        </p>
+      )}
 
       {error ? (
         <p className="text-destructive text-sm" role="alert">

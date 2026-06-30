@@ -4,7 +4,7 @@ import { SiteShell } from "@/components/layout/SiteShell";
 export const metadata = {
   title: "Valores e equipamentos",
   description:
-    "Tabela de preços de mini caçambas, tambores e barris Locafull em Goiânia. Pagamento via cartão.",
+    "Tabela de preços de mini caçambas e tambores Locafull em Goiânia. Pagamento via Pix e cartão.",
 };
 
 type PricingRouteProps = {

@@ -17,8 +17,8 @@ export function Hero({ className }: HeroProps) {
       <div className="mx-auto grid max-w-7xl items-center gap-8 px-4 py-16 sm:px-6 lg:grid-cols-2 lg:gap-12 lg:px-8 lg:py-24">
         <div className="flex flex-col items-center gap-8 text-center lg:items-start lg:text-left">
           <div className="flex flex-col gap-4">
-            <p className="text-alert-3 text-sm font-medium tracking-widest uppercase">
-              {"Agilidade que movimenta sua obra"}
+            <p className="text-alert-3 text-sm font-medium tracking-widest">
+              {"AGILIDADE QUE MOVIMENTA SUA OBRA"}
             </p>
             <h1 className="text-headline-4 sm:text-headline-3 leading-tight font-bold">
               Locação de mini caçambas para sua obra em Goiânia e região

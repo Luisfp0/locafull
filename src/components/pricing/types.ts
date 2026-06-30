@@ -25,6 +25,8 @@ export type PricingProduct = {
   rules: string[];
   ctaLabel: string;
   orderEnabled: boolean;
+  /** false = só Pix (ex.: tambor). Default true quando omitido. */
+  cardPaymentEnabled?: boolean;
 };
 
 export type PricingPageProps = {

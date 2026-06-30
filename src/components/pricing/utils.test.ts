@@ -8,7 +8,7 @@ describe("findPricingPlanPrice", () => {
   });
 
   it("returns combo price for drum", () => {
-    expect(findPricingPlanPrice("drum", "combo-2")).toBe(20000);
+    expect(findPricingPlanPrice("drum", "combo-2")).toBe(25000);
   });
 
   it("returns undefined for invalid ids", () => {

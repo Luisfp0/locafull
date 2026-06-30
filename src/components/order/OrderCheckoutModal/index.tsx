@@ -45,6 +45,7 @@ export function OrderCheckoutModal({
       <OrderForm
         productId={productId}
         planId={planId}
+        cardPaymentEnabled={product.cardPaymentEnabled !== false}
         onPaid={(orderId) =>
           router.push(`${ROUTES.checkoutSuccess}?orderId=${orderId}`)
         }

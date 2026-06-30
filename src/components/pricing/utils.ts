@@ -56,11 +56,16 @@ export function findAbacateProductId(
   planId: string,
 ): string | undefined {
   const product = findPricingProduct(productId);
-  if (!product) return undefined;
+  if (!product || product.cardPaymentEnabled === false) return undefined;
 
   const plan = product.plans.find((item) => item.id === planId);
   if (plan?.abacateProductId) return plan.abacateProductId;
 
   const combo = product.combos?.find((item) => item.id === planId);
   return combo?.abacateProductId;
+}
+
+export function isCardPaymentEnabled(productId: string): boolean {
+  const product = findPricingProduct(productId);
+  return product?.cardPaymentEnabled !== false;
 }

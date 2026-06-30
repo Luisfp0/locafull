@@ -8,6 +8,7 @@ import {
   findAbacateProductId,
   findPricingPlanPrice,
   findPricingProduct,
+  isCardPaymentEnabled,
 } from "@/components/pricing/utils";
 import { createCardCheckout } from "@/lib/abacatepay/create-card-checkout";
 import { createPixCharge } from "@/lib/abacatepay/create-pix-charge";
@@ -56,6 +57,16 @@ export async function POST(request: Request) {
   if (!product?.orderEnabled) {
     return NextResponse.json(
       { error: "Este equipamento não está disponível para pedido online." },
+      { status: 400 },
+    );
+  }
+
+  if (paymentMethod === "card" && !isCardPaymentEnabled(data.productId)) {
+    return NextResponse.json(
+      {
+        error:
+          "Este equipamento aceita apenas Pix. Escolha Pix ou fale conosco no WhatsApp.",
+      },
       { status: 400 },
     );
   }
