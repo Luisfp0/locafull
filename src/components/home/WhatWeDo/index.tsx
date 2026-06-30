@@ -41,10 +41,10 @@ export function WhatWeDo({ className }: WhatWeDoProps) {
 
         <div className="flex flex-col items-center gap-8">
           <p className="mx-auto max-w-2xl text-center text-base leading-relaxed text-gray-100">
-            Somos especialistas em locação de mini caçambas, tambores e barris
-            para obras, reformas e limpeza de terrenos em Goiânia e região.
-            Fazemos a entrega e a retirada no local, com agilidade e
-            equipamentos ideais para espaços menores.
+            Somos especialistas em locação de mini caçambas e tambores para
+            obras, reformas e limpeza de terrenos em Goiânia e região. Fazemos a
+            entrega e a retirada no local, com agilidade e equipamentos ideais
+            para espaços menores.
           </p>
           <div className="flex justify-center">
             <Button size="lg" asChild>
