@@ -35,20 +35,22 @@ export function Header({ className }: HeaderProps) {
       <header
         className={`border-border sticky top-0 z-40 border-b bg-white/95 backdrop-blur ${className ?? ""}`}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
-          <Logo />
-          <nav className="hidden items-center gap-6 md:flex">
-            {NAV_LINKS.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                onClick={() => scrollToTopIfSameRoute(link.href)}
-                className="text-primary hover:text-warning text-sm font-medium transition-colors"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
+        <div className="left mx-auto flex max-w-7xl justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+          <div className="flex items-center gap-10">
+            <Logo />
+            <nav className="hidden items-center gap-6 md:flex">
+              {NAV_LINKS.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => scrollToTopIfSameRoute(link.href)}
+                  className="text-primary hover:text-warning text-sm font-medium transition-colors"
+                >
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+          </div>
           <div className="flex items-center gap-2 sm:gap-3">
             <a
               href={INSTAGRAM_URL}
