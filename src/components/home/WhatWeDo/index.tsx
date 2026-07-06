@@ -31,7 +31,7 @@ export function WhatWeDo({ className }: WhatWeDoProps) {
                 height={300}
               />
               <div className="absolute bottom-0 flex w-full justify-center rounded-b-lg bg-white py-4">
-                <h3 className="text-primary text-xs font-bold sm:text-base">
+                <h3 className="text-primary text-[11px] font-bold sm:text-base">
                   {item.title}
                 </h3>
               </div>
