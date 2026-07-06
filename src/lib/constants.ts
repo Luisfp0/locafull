@@ -11,7 +11,7 @@ export const WHATSAPP_NUMBER =
 
 export const WHATSAPP_DISPLAY = "(62) 3030-0077";
 export const PHONE_DISPLAY = "(62) 3030-0077";
-export const EMAIL = "contato@locafull.com.br";
+export const EMAIL = "locafull.locacoes@gmail.com";
 export const ADDRESS = "Goiânia e região metropolitana";
 
 export const INSTAGRAM_URL =
