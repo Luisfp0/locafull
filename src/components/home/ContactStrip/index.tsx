@@ -17,7 +17,7 @@ export function ContactStrip({ className }: ContactStripProps) {
                 <p className="text-black-1 text-[12px] font-bold tracking-wide uppercase">
                   {item.label}
                 </p>
-                <p className="text-warning ml-2 text-[10px] font-medium">
+                <p className="text-warning text-[10px] font-medium">
                   {item.value}
                 </p>
               </div>
