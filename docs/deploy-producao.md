@@ -32,8 +32,15 @@ O `.env.example` e o seu `.env.local` têm blocos comentados **LOCAL** vs **PROD
 | `TRELLO_MAX_DELIVERIES_PER_DAY` | `6` (opcional; default 6)                      |
 | `TRELLO_LIST_ID_A_AGENDAR`      | fallback se pedido antigo sem data             |
 | `TRELLO_LABEL_ID_ENTREGAR`      | label verde/laranja "Entregar" nos cards       |
+| `DISCORD_WEBHOOK_URL`           | URL do webhook do canal (aviso de venda)       |
 
 Depois: **Deployments** → ⋯ no último deploy → **Redeploy** (para carregar as variáveis).
+
+### Discord (pedido pago)
+
+1. No Discord: canal desejado → **Editar canal** → **Integrações** → **Webhooks** → **Novo webhook**.
+2. Copie a **URL do webhook** e configure como `DISCORD_WEBHOOK_URL` na Vercel.
+3. Após pagamento confirmado, o canal recebe mensagem com cliente, valor, endereço e data de entrega.
 
 ## 2. Conta e produtos na AbacatePay
 

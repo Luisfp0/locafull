@@ -1,4 +1,5 @@
 import type { AbacateWebhookEvent } from "@/lib/abacatepay/types";
+import { notifyOrderPaidOnDiscord } from "@/lib/discord/notify-order-paid";
 import { getSupabaseAdmin } from "@/lib/supabase";
 import { createTrelloCardForOrder } from "@/lib/trello/create-order-card";
 
@@ -67,6 +68,19 @@ export async function confirmOrderFromWebhook(
     console.info("[trello] card created", {
       orderId: row.id,
       cardId: trelloResult.cardId,
+    });
+  }
+
+  const discordResult = await notifyOrderPaidOnDiscord(row);
+
+  if (discordResult.sent === false && "error" in discordResult) {
+    console.error("[discord] notify failed", {
+      orderId: row.id,
+      error: discordResult.error,
+    });
+  } else if (discordResult.sent) {
+    console.info("[discord] order paid notification sent", {
+      orderId: row.id,
     });
   }
 
