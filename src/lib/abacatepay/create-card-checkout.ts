@@ -1,6 +1,9 @@
 import { abacatePost } from "./client";
 import type { CardCheckout, CreateCardCheckoutInput } from "./types";
 
+/** Máximo de parcelas no checkout hospedado (AbacatePay: 1–12; mín. R$ 10/parcela). */
+export const CARD_MAX_INSTALLMENTS = 12;
+
 type CardCheckoutResponse = {
   id?: string;
   url?: string;
@@ -12,6 +15,7 @@ export async function createCardCheckout(
   const result = await abacatePost<CardCheckoutResponse>("/checkouts/create", {
     items: [{ id: input.abacateProductId, quantity: 1 }],
     methods: ["CARD"],
+    card: { maxInstallments: CARD_MAX_INSTALLMENTS },
     externalId: input.externalId,
     completionUrl: input.completionUrl,
     returnUrl: input.returnUrl,
