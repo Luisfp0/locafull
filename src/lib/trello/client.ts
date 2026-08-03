@@ -168,6 +168,8 @@ export async function fetchEntregarCardCountsByDate(
     const date = parseEntregarListDate(list.name, year);
     if (date) {
       listIdToDate.set(list.id, date);
+    } else if (/\d{2}\/\d{2}/.test(list.name)) {
+      console.warn("Coluna Trello com data não reconhecida:", list.name);
     }
   }
 
@@ -189,7 +191,7 @@ export async function fetchEntregarCardCountsByDate(
       continue;
     }
 
-    if (!card.idLabels?.includes(config.labelIdEntregar)) {
+    if (!card.idLabels.includes(config.labelIdEntregar)) {
       continue;
     }
 
