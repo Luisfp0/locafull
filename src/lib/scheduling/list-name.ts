@@ -1,39 +1,40 @@
-const WEEKDAY_PT = [
+const WEEKDAY_PT_SHORT = [
   "DOMINGO",
-  "SEGUNDA-FEIRA",
-  "TERÇA-FEIRA",
-  "QUARTA-FEIRA",
-  "QUINTA-FEIRA",
-  "SEXTA-FEIRA",
+  "SEGUNDA",
+  "TERÇA",
+  "QUARTA",
+  "QUINTA",
+  "SEXTA",
   "SÁBADO",
 ] as const;
 
-const ENTREGAR_LIST_PATTERN = /^ENTREGAR\s*-+\s*.+?(\d{2})\/(\d{2})\s*$/i;
+const DELIVERY_LIST_PATTERN =
+  /^(SEGUNDA|TERÇA|QUARTA|QUINTA|SEXTA|SÁBADO)\s*-\s*(\d{2})\/(\d{2})\s*$/i;
 
 function pad2(value: number): string {
   return String(value).padStart(2, "0");
 }
 
 export function buildEntregarListName(date: Date): string {
-  const weekday = WEEKDAY_PT[date.getDay()];
+  const weekday = WEEKDAY_PT_SHORT[date.getDay()];
   const day = pad2(date.getDate());
   const month = pad2(date.getMonth() + 1);
 
-  return `ENTREGAR - ${weekday} - ${day}/${month}`;
+  return `${weekday} - ${day}/${month}`;
 }
 
 export function parseEntregarListDate(
   name: string,
   year: number,
 ): string | null {
-  const match = name.trim().match(ENTREGAR_LIST_PATTERN);
+  const match = name.trim().match(DELIVERY_LIST_PATTERN);
 
   if (!match) {
     return null;
   }
 
-  const day = Number(match[1]);
-  const month = Number(match[2]);
+  const day = Number(match[2]);
+  const month = Number(match[3]);
   const parsed = new Date(year, month - 1, day);
 
   if (
