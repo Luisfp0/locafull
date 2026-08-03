@@ -7,6 +7,12 @@ type TrelloList = {
   name: string;
 };
 
+type TrelloCardSummary = {
+  id: string;
+  idList: string;
+  idLabels: string[];
+};
+
 const boardIdCache = new Map<string, string>();
 
 function buildAuthParams(config: Pick<TrelloConfig, "apiKey" | "token">) {
@@ -81,24 +87,24 @@ export async function fetchTrelloLists(
   }
 }
 
-export async function countOpenCardsInList(
-  listId: string,
+export async function fetchOpenBoardCards(
+  boardId: string,
   config: Pick<TrelloConfig, "apiKey" | "token">,
-): Promise<number | { error: string }> {
+): Promise<TrelloCardSummary[] | { error: string }> {
   const params = buildAuthParams(config);
-  params.set("fields", "id");
+  params.set("fields", "id,idList,idLabels");
+  params.set("filter", "open");
 
   try {
     const response = await fetch(
-      `https://api.trello.com/1/lists/${listId}/cards?${params}`,
+      `https://api.trello.com/1/boards/${boardId}/cards?${params}`,
     );
 
     if (!response.ok) {
       return { error: `Trello API ${response.status}` };
     }
 
-    const cards = (await response.json()) as unknown[];
-    return cards.length;
+    return (await response.json()) as TrelloCardSummary[];
   } catch (error) {
     const message =
       error instanceof Error ? error.message : "Erro de rede ao chamar Trello.";
@@ -148,7 +154,7 @@ export async function createTrelloList(
 export async function fetchEntregarCardCountsByDate(
   boardId: string,
   year: number,
-  config: Pick<TrelloConfig, "apiKey" | "token">,
+  config: Pick<TrelloConfig, "apiKey" | "token" | "labelIdEntregar">,
 ): Promise<Record<string, number> | { error: string }> {
   const lists = await fetchTrelloLists(boardId, config);
 
@@ -156,22 +162,38 @@ export async function fetchEntregarCardCountsByDate(
     return lists;
   }
 
-  const counts: Record<string, number> = {};
+  const listIdToDate = new Map<string, string>();
 
   for (const list of lists) {
-    const cardCount = await countOpenCardsInList(list.id, config);
-
-    if (typeof cardCount === "object") {
-      return cardCount;
-    }
-
     const date = parseEntregarListDate(list.name, year);
+    if (date) {
+      listIdToDate.set(list.id, date);
+    }
+  }
 
+  if (listIdToDate.size === 0) {
+    return {};
+  }
+
+  const cards = await fetchOpenBoardCards(boardId, config);
+
+  if ("error" in cards) {
+    return cards;
+  }
+
+  const counts: Record<string, number> = {};
+
+  for (const card of cards) {
+    const date = listIdToDate.get(card.idList);
     if (!date) {
       continue;
     }
 
-    counts[date] = (counts[date] ?? 0) + cardCount;
+    if (!card.idLabels?.includes(config.labelIdEntregar)) {
+      continue;
+    }
+
+    counts[date] = (counts[date] ?? 0) + 1;
   }
 
   return counts;
