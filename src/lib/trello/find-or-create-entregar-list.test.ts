@@ -5,7 +5,7 @@ import { findOrCreateEntregarList } from "./find-or-create-entregar-list";
 const config = {
   apiKey: "key",
   token: "token",
-  boardId: "board123",
+  boardId: "aaaaaaaaaaaaaaaaaaaaaaaa",
   labelIdEntregar: "label123",
   maxDeliveriesPerDay: 6,
 };
@@ -15,14 +15,12 @@ describe("findOrCreateEntregarList", () => {
     vi.unstubAllGlobals();
   });
 
-  it("returns existing list id when ENTREGAR list matches date", async () => {
+  it("returns existing list id when day list matches date", async () => {
     vi.stubGlobal(
       "fetch",
       vi.fn().mockResolvedValue({
         ok: true,
-        json: async () => [
-          { id: "list456", name: "ENTREGAR - TERÇA-FEIRA - 09/06" },
-        ],
+        json: async () => [{ id: "list456", name: "TERÇA - 09/06" }],
       }),
     );
 
@@ -31,7 +29,7 @@ describe("findOrCreateEntregarList", () => {
     expect(result).toEqual({ listId: "list456" });
   });
 
-  it("creates list when ENTREGAR list does not exist", async () => {
+  it("creates list when day list does not exist", async () => {
     const fetchMock = vi
       .fn()
       .mockResolvedValueOnce({
