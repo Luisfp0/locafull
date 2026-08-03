@@ -4,6 +4,8 @@
 **Status:** Aprovado  
 **Escopo:** Campo de data de entrega no modal de checkout, disponibilidade via Trello + Supabase, card na coluna ENTREGAR do dia (criação automática de coluna).
 
+> **Atualização 2026-08-03:** a contagem Trello e o nome das colunas foram alterados — ver `2026-08-03-trello-delivery-label-availability-design.md`.
+
 ---
 
 ## 1. Objetivo

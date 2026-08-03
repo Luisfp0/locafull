@@ -86,8 +86,10 @@ O site já está em produção na Vercel. Para aceitar pagamentos reais:
 ### Agendamento de entrega
 
 - O checkout exige **data de entrega** (seg–sáb, mínimo 1 dia de antecedência, até 30 dias).
-- Disponibilidade: colunas **ENTREGAR** no Trello + reservas `pending` no Supabase (máx. 6/dia).
-- Após pagamento, o card vai na coluna `ENTREGAR - {DIA} - {DD/MM}` (criada automaticamente se não existir).
+- Disponibilidade: colunas de data no Trello no formato `DIA - DD/MM` (ex.: `QUARTA - 05/08`); conta só cards com a label Entregar (`TRELLO_LABEL_ID_ENTREGAR`) + reservas `pending` no Supabase (máx. 6/dia).
+- Cards de organização (entregador/rota) **não** devem ter a label Entregar.
+- Colunas legadas `ENTREGAR - …` não entram na contagem — renomear para o formato curto.
+- Após pagamento, o card vai na coluna `{DIA} - {DD/MM}` (criada automaticamente se não existir).
 - Configure `TRELLO_BOARD_ID` na Vercel (obrigatório para agendamento).
 
 | Ambiente AbacatePay | Chave API     | Pagamento               |
