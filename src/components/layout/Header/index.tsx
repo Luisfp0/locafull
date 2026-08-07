@@ -20,7 +20,7 @@ import { buildWaLink } from "@/lib/utils";
 import { MobileMenu } from "./components/MobileMenu";
 import type { HeaderProps } from "./types";
 
-export function Header({ className }: HeaderProps) {
+export const Header = ({ className }: HeaderProps) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
 
@@ -33,12 +33,12 @@ export function Header({ className }: HeaderProps) {
   return (
     <>
       <header
-        className={`border-border sticky top-0 z-40 border-b bg-white/95 backdrop-blur ${className ?? ""}`}
+        className={`sticky top-0 z-1 mx-auto flex items-center justify-center bg-white/95 px-5 ${className ?? ""}`}
       >
-        <div className="left mx-auto flex max-w-7xl justify-between gap-4 px-4 py-3 sm:px-6 lg:px-8">
+        <div className="flex h-15 w-full max-w-7xl items-center justify-between">
           <div className="flex items-center gap-10">
             <Logo />
-            <nav className="hidden items-center gap-6 md:flex">
+            <nav className="hidden gap-6 md:flex">
               {NAV_LINKS.map((link) => (
                 <Link
                   key={link.href}
@@ -51,12 +51,12 @@ export function Header({ className }: HeaderProps) {
               ))}
             </nav>
           </div>
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex gap-3">
             <a
               href={INSTAGRAM_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary hidden rounded-full p-2 hover:bg-gray-50 sm:inline-flex"
+              className="text-primary hidden rounded-full p-2 hover:bg-gray-50 md:flex"
               aria-label="Instagram Locafull"
             >
               <InstagramIcon className="size-5" />
@@ -64,7 +64,7 @@ export function Header({ className }: HeaderProps) {
             <Button
               variant="whatsapp"
               size="sm"
-              className="hidden sm:inline-flex"
+              className="hidden md:flex"
               asChild
             >
               <a
@@ -78,7 +78,7 @@ export function Header({ className }: HeaderProps) {
             </Button>
             <button
               type="button"
-              className="text-primary inline-flex rounded-lg p-2 hover:bg-gray-50 md:hidden"
+              className="text-primary hover:bg-gray-50 md:hidden"
               onClick={() => setMenuOpen(true)}
               aria-label="Abrir menu"
             >
@@ -90,4 +90,4 @@ export function Header({ className }: HeaderProps) {
       <MobileMenu open={menuOpen} onClose={() => setMenuOpen(false)} />
     </>
   );
-}
+};

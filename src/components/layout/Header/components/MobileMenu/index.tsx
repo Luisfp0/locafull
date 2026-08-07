@@ -20,12 +20,12 @@ import type { MobileMenuProps } from "./types";
 export function MobileMenu({ open, onClose }: MobileMenuProps) {
   const pathname = usePathname();
 
-  function handleNavClick(href: string) {
+  const handleNavClick = (href: string) => {
     if (pathname === href) {
       window.scrollTo(0, 0);
     }
     onClose();
-  }
+  };
 
   useEffect(() => {
     if (!open) return;
@@ -41,7 +41,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
   return (
     <div
       className={cn(
-        "fixed inset-0 z-50 md:hidden",
+        "fixed inset-0 z-2 md:hidden",
         !open && "pointer-events-none",
       )}
       aria-hidden={!open}
@@ -49,7 +49,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
       <button
         type="button"
         className={cn(
-          "bg-overlay absolute inset-0 transition-opacity duration-300",
+          "bg-overlay absolute inset-0",
           open ? "opacity-100" : "opacity-0",
         )}
         onClick={onClose}
@@ -65,35 +65,35 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
         aria-modal={open}
         aria-label="Menu de navegação"
       >
-        <div className="border-border flex items-center justify-between border-b px-4 py-4">
-          <span className="text-primary font-bold">Menu</span>
+        <div className="border-border flex items-center justify-between border-b p-4">
+          <span className="text-primary text-md font-bold">Menu</span>
           <button
             type="button"
             onClick={onClose}
-            className="text-primary rounded-lg p-2 hover:bg-gray-50"
+            className="text-primary hover:bg-gray-50"
             aria-label="Fechar menu"
           >
-            <X className="size-6" />
+            <X className="size-5" />
           </button>
         </div>
-        <nav className="flex flex-1 flex-col gap-1 px-4 py-6">
+        <nav className="items-flex-start flex h-full flex-col gap-4 p-4">
           {NAV_LINKS.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={() => handleNavClick(link.href)}
-              className="text-primary rounded-lg px-3 py-3 text-base font-medium hover:bg-gray-50"
+              className="text-primary text-md font-medium"
             >
               {link.label}
             </Link>
           ))}
         </nav>
-        <div className="border-border flex flex-col gap-3 border-t p-4">
+        <div className="border-border flex flex-col gap-5 border-t p-4">
           <a
             href={INSTAGRAM_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-primary inline-flex items-center gap-2"
+            className="text-primary flex items-center gap-2"
           >
             <InstagramIcon className="size-5" />
             Instagram

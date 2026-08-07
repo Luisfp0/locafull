@@ -1,12 +1,11 @@
-import { Header } from "@/components/layout/Header";
-
+import { Header } from "../Header";
 import type { SiteShellProps } from "./types";
 
-export function SiteShell({ children }: SiteShellProps) {
+export const SiteShell = ({ children }: SiteShellProps) => {
   return (
-    <>
+    <div>
       <Header />
-      <main>{children}</main>
-    </>
+      <main className="w-full">{children}</main>
+    </div>
   );
-}
+};
