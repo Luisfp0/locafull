@@ -11,13 +11,13 @@ export const PRICING_PRODUCTS: PricingProduct[] = [
       {
         id: "48h",
         label: "Aluguel 48h",
-        priceCents: 20000,
-        abacateProductId: "prod_0M5DEJBMLwQFR5WaFUegq5HR",
+        priceCents: 25000,
+        abacateProductId: "prod_d1WrtSzLDHuK2AsgRGDmLemn",
       },
       {
         id: "extra-day",
         label: "Cada dia adicional",
-        priceCents: 1000,
+        priceCents: 2000,
         note: "por dia",
       },
     ],
